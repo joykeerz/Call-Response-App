@@ -56,18 +56,30 @@ Yaksa Harmoni Global | Data Business Partner
                 <div class="form-group">
                   <label>Company Name</label>
                   <input type="text" name="tb_company_name" class="form-control">
+                  @error('tb_company_name')
+                      <small style="color: red">this field is required</small>
+                  @enderror
                 </div>
                 <div class="form-group">
                   <label>Company Address</label>
                   <input type="text" name="tb_company_address" class="form-control">
+                  @error('tb_company_address')
+                      <small style="color: red">this field is required</small>
+                  @enderror
                 </div>
                 <div class="form-group">
                   <label>PIC Name</label>
                   <input type="text" name="tb_pic_name" class="form-control">
+                  @error('tb_pic_name')
+                      <small style="color: red">this field is required</small>
+                  @enderror
                 </div>
                 <div class="form-group">
                   <label>Contact Number</label>
                   <input type="text" name="tb_contact_number" class="form-control">
+                  @error('tb_contact_number')
+                      <small style="color: red">this field is required</small>
+                  @enderror
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div>

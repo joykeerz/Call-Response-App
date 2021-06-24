@@ -20,6 +20,13 @@ class BusinessPartnerController extends Controller
 
     public function store(Request $request)
     {
+        $validateData = $request->validate([
+            'tb_company_name' => 'required',
+            'tb_company_address' => 'required',
+            'tb_pic_name' => 'required',
+            'tb_contact_number' => 'required'
+        ]);
+
         $bps = Bp::firstOrNew(['bp_company_name' => $request->tb_company_name]);
         $bps->bp_company_name = $request->tb_company_name;
         $bps->bp_company_address = $request->tb_company_address;

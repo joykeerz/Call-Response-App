@@ -20,6 +20,13 @@ class ServicePartnerController extends Controller
     }
     public function store(Request $request)
     {
+        $validateData = $request->validate([
+            'tb_company_name' => 'required',
+            'tb_company_address' => 'required',
+            'tb_pic_name' => 'required',
+            'tb_contact_number' => 'required'
+        ]);
+
         $sps = Sp::firstOrNew(['sp_company_name' => $request->tb_company_name]);
         $sps->sp_company_name = $request->tb_company_name;
         $sps->sp_company_address = $request->tb_company_address;
