@@ -109,7 +109,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href=""{{route('bp.index')}}" class="nav-link">
+                <a href="{{route('bp.index')}}" class="nav-link">
                   <i class="fas fa-briefcase nav-icon"></i>
                   <p>Bussiness Partner</p>
                 </a>
