@@ -185,10 +185,6 @@ Yaksa Harmoni Global | Data Client/Customer
 <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('template/dist/js/adminlte.min.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('template/dist/js/demo.js') }}"></script>
 <!-- Page specific script -->
 <script>
   $(function () {

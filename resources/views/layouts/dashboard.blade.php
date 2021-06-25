@@ -150,7 +150,6 @@
 
     <!-- Main content -->
     <section class="content">
-
       <!-- Default box -->
       @yield('content')
       <!-- /.card -->

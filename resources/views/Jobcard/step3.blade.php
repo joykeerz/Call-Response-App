@@ -47,8 +47,8 @@ Yaksa Harmoni Global | New Jobcard
                                 <th>Part Num.</th>
                                 <th>Qty</th>
                                 <th>
-                                    
-                                    
+
+
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a href="javascript:void(0)" class="btn btn-sm btn-primary" id="addRow">Add</a>
                                         <input type="hidden" name="tb_id_jobcard" value="{{$jobcardId}}">
@@ -104,10 +104,6 @@ Yaksa Harmoni Global | New Jobcard
 <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('template/dist/js/adminlte.min.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('template/dist/js/demo.js') }}"></script>
 <!-- Page specific script -->
 <script>
 $('thead').on('click', '#addRow', function () {
