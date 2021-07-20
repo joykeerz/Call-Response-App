@@ -20,6 +20,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('profile')->group(function () {
+        Route::get('/', 'ProfileController@index')->name('userProfile');
+        Route::put('/update/{id}', 'ProfileController@updateProfile')->name('userProfile.Update');
+    });
+});
 
 ///admin route
 Route::middleware(['auth', 'Admin'])->group(function () {
@@ -40,6 +46,7 @@ Route::middleware(['auth', 'Admin'])->group(function () {
         Route::post('/countWaitingTime', 'JobcardController@countWaitingTime');
     });
 
+    ///bp
     Route::prefix('bp')->group(function () {
         Route::get('/', 'BusinessPartnerController@index')->name('bp.index');
         Route::post('/store', 'BusinessPartnerController@store')->name('bp.store');
@@ -48,6 +55,7 @@ Route::middleware(['auth', 'Admin'])->group(function () {
         Route::get('/delete/{id}', 'BusinessPartnerController@delete')->name('bp.delete');
     });
 
+    ///sp
     Route::prefix('sp')->group(function () {
         Route::get('/', 'ServicePartnerController@index')->name('sp.index');
         Route::post('/store', 'ServicePartnerController@store')->name('sp.store');
@@ -56,6 +64,7 @@ Route::middleware(['auth', 'Admin'])->group(function () {
         Route::get('/delete/{id}', 'ServicePartnerController@delete')->name('sp.delete');
     });
 
+    ///sparepart
     Route::prefix('sparepart')->group(function () {
         Route::get('/', 'SparepartController@index')->name('spp.index');
         Route::post('/store', 'SparepartController@store')->name('spp.store');
@@ -64,6 +73,7 @@ Route::middleware(['auth', 'Admin'])->group(function () {
         Route::get('/delete/{id}', 'SparepartController@delete')->name('spp.delete');
     });
 
+    ///product
     Route::prefix('product')->group(function () {
         Route::get('/', 'ProductDetailController@index')->name('pd.index');
         Route::post('/store', 'ProductDetailController@store')->name('pd.store');
@@ -72,6 +82,7 @@ Route::middleware(['auth', 'Admin'])->group(function () {
         Route::get('/delete/{id}', 'ProductDetailController@delete')->name('pd.delete');
     });
 
+    ///client
     Route::prefix('client')->group(function () {
         Route::get('/', 'ClientController@index')->name('cl.index');
         Route::post('/store', 'ClientController@store')->name('cl.store');
