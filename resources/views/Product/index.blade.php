@@ -111,7 +111,7 @@ Yaksa Harmoni Global | Data Detail Products
               <th>Brand Name</th>
               <th>Date Of Entry</th>
               <th>Activation Date</th>
-              <th>Tools</th>
+              <th>Details Info</th>
             </tr>
             </thead>
             <tbody>
@@ -146,7 +146,7 @@ Yaksa Harmoni Global | Data Detail Products
                 <th>Brand Name</th>
                 <th>Date Of Entry</th>
                 <th>Activation Date</th>
-                <th>Tools</th>
+                <th>Details Info</th>
             </tr>
             </tfoot>
         </table>
@@ -243,7 +243,6 @@ Yaksa Harmoni Global | Data Detail Products
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,

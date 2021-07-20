@@ -109,7 +109,7 @@ Yaksa Harmoni Global | Data Sparepart
               <th>Date Entry</th>
               <th>Date Out</th>
               <th>Condition</th>
-              <th>Tools</th>
+              <th>Details Info</th>
             </tr>
             </thead>
             <tbody>
@@ -142,7 +142,7 @@ Yaksa Harmoni Global | Data Sparepart
                 <th>Date Entry</th>
                 <th>Date Out</th>
                 <th>Condition</th>
-                <th>Tools</th>
+                <th>Details Info</th>
             </tr>
             </tfoot>
         </table>
@@ -236,7 +236,6 @@ Yaksa Harmoni Global | Data Sparepart
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,
@@ -249,6 +248,7 @@ Yaksa Harmoni Global | Data Sparepart
     });
   });
 </script>
+
 <script>
 function edit(id){
     var url = '/sparepart/edit/'+id;

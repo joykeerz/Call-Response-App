@@ -99,7 +99,7 @@
               <th>Machine ID</th>
               <th>Customer</th>
               <th>Ticket Status</th>
-              <th>Tools</th>
+              <th>Details Info</th>
             </tr>
             </thead>
             <tbody>
@@ -153,7 +153,6 @@
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,

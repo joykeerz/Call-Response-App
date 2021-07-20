@@ -24,7 +24,9 @@ class ServicePartnerController extends Controller
             'tb_company_name' => 'required',
             'tb_company_address' => 'required',
             'tb_pic_name' => 'required',
-            'tb_contact_number' => 'required'
+            'tb_contact_number' => 'required',
+            'tb_email' => 'required',
+            'tb_bank_name' => 'required'
         ]);
 
         $sps = Sp::firstOrNew(['sp_company_name' => $request->tb_company_name]);
@@ -32,6 +34,8 @@ class ServicePartnerController extends Controller
         $sps->sp_company_address = $request->tb_company_address;
         $sps->sp_pic_name = $request->tb_pic_name;
         $sps->sp_contact_number = $request->tb_contact_number;
+        $sps->sp_email = $request->tb_email;
+        $sps->sp_bank_name = $request->tb_bank_name;
         $sps->save();
         return redirect()->route('sp.index')->with('message', 'data successfuly added');
     }
@@ -49,6 +53,8 @@ class ServicePartnerController extends Controller
         $bps->sp_company_address = $request->tb_sp_company_address;
         $bps->sp_pic_name = $request->tb_sp_pic_name;
         $bps->sp_contact_number = $request->tb_sp_contact_number;
+        $bps->sp_email = $request->tb_sp_email;
+        $bps->sp_bank_name = $request->tb_sp_bank_name;
         $bps->save();
         return redirect()->route('sp.index')->with('message', 'data successfuly updated');
     }

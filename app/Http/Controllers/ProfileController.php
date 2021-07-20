@@ -16,7 +16,8 @@ class ProfileController extends Controller
 
     public function index()
     {
-        return view('userDashboard.index');
+        $users = User::all();
+        return view('userDashboard.index', ['users' => $users]);
     }
 
     public function updateProfile(Request $request, $id)
@@ -27,5 +28,42 @@ class ProfileController extends Controller
         $user->password = Hash::make($request->tbpassword);
         $user->save();
         return redirect()->route('userProfile')->with('message', 'profile updated successfuly');
+    }
+
+    public function createUser(Request $request)
+    {
+        $user = new User;
+        $user->name = $request->tbNewName;
+        $user->email = $request->tbNewEmail;
+        $user->password = Hash::make($request->tbNewName);
+        $user->level = $request->cbNewRole;
+        $user->save();
+        return redirect()->route('userProfile')->with('message', 'user created successfuly');
+    }
+
+    public function editUser($id)
+    {
+        $data = User::find($id);
+        return response()->json($data);
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->name = $request->tbEditName;
+        $user->email = $request->tbEditEmail;
+        if ($request->tbEditPassword) {
+            $user->password = Hash::make($request->tbEditPassword);
+        }
+        $user->level = $request->cbEditRole;
+        $user->save();
+        return redirect()->route('userProfile')->with('message', 'user updated successfuly');
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('userProfile')->with('message', 'user deleted successfuly');
     }
 }

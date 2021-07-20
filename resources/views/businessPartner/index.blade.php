@@ -81,6 +81,20 @@ Yaksa Harmoni Global | Data Business Partner
                       <small style="color: red">this field is required</small>
                   @enderror
                 </div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="text" name="tb_email" class="form-control">
+                  @error('tb_email')
+                      <small style="color: red">this field is required</small>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label>Bank Name / Project</label>
+                  <input type="text" name="tb_bank_name" class="form-control">
+                  @error('tb_bank_name')
+                      <small style="color: red">this field is required</small>
+                  @enderror
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div>
               <!-- /.card-body -->
@@ -110,7 +124,9 @@ Yaksa Harmoni Global | Data Business Partner
                       <th>Company Address</th>
                       <th>PIC Name</th>
                       <th>Contact Name</th>
-                      <th>Tools</th>
+                      <th>Email</th>
+                      <th>Bank Name</th>
+                      <th>Details Info</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -121,6 +137,8 @@ Yaksa Harmoni Global | Data Business Partner
                                 <td>{{$bp->bp_company_address}}</td>
                                 <td>{{$bp->bp_pic_name}}</td>
                                 <td>{{$bp->bp_contact_number}}</td>
+                                <td>{{$bp->bp_email}}</td>
+                                <td>{{$bp->bp_bank_name}}</td>
                                 <td>
                                     <button onclick="edit('{{$bp->id}}')" class="btn btn-success float-right mr-2"><i class="fa fa-pencil-alt"></i></button>
                                     <a onclick="return  confirm('are you sure?')" class="btn btn-danger float-right mr-2" href="{{route('bp.delete',['id'=>$bp->id])}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
@@ -139,7 +157,9 @@ Yaksa Harmoni Global | Data Business Partner
                         <th>Company Address</th>
                         <th>PIC Name</th>
                         <th>Contact Name</th>
-                        <th>tools</th>
+                        <th>Email</th>
+                        <th>Bank Name</th>
+                        <th>Details Info</th>
                     </tr>
                     </tfoot>
                 </table>
@@ -186,6 +206,18 @@ Yaksa Harmoni Global | Data Business Partner
                                     <input type="text" id="tb_bp_contact_number" name="tb_bp_contact_number" class="form-control">
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <label for="tb_bp_email" class="form-label">Email</label>
+                                    <input type="text" id="tb_bp_email" name="tb_bp_email" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <label for="tb_bp_bank_name" class="form-label">Bank Name / Project</label>
+                                    <input type="text" id="tb_bp_bank_name" name="tb_bp_bank_name" class="form-control">
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Save changes</button>
@@ -218,7 +250,6 @@ Yaksa Harmoni Global | Data Business Partner
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,
@@ -244,6 +275,8 @@ function edit(id){
             $('#tb_bp_company_address').val(response['bp_company_address']);
             $('#tb_bp_pic_name').val(response['bp_pic_name']);
             $('#tb_bp_contact_number').val(response['bp_contact_number']);
+            $('#tb_bp_email').val(response['bp_email']);
+            $('#tb_bp_bank_name').val(response['bp_bank_name']);
             $('#update-modal').modal('show');
         }
     });

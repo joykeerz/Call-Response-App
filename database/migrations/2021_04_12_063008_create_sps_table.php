@@ -19,6 +19,8 @@ class CreateSpsTable extends Migration
             $table->string('sp_company_address');
             $table->string('sp_pic_name');
             $table->string('sp_contact_number');
+            $table->string('sp_email');
+            $table->string('sp_bank_name');
             $table->timestamps();
         });
     }

@@ -29,6 +29,13 @@ Route::middleware(['auth'])->group(function () {
 
 ///admin route
 Route::middleware(['auth', 'Admin'])->group(function () {
+    Route::prefix('profile')->group(function () {
+        Route::post('/manage/user/create', 'ProfileController@createUser')->name('userProfile.createUser');
+        Route::get('/manage/user/delete/{id}', 'ProfileController@deleteUser')->name('userProfile.deleteUser');
+        Route::get('/manage/user/edit/{id}', 'ProfileController@editUser')->name('userProfile.editUser');
+        Route::post('/manage/user/update/{id}', 'ProfileController@updateUser')->name('userProfile.updateUser');
+    });
+
     ///jobcard route
     Route::prefix('jobcard')->group(function () {
         Route::get('/step-1', 'JobcardController@stepOne')->name('jobcard.stepOneGet');

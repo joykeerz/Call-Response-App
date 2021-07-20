@@ -24,7 +24,9 @@ class BusinessPartnerController extends Controller
             'tb_company_name' => 'required',
             'tb_company_address' => 'required',
             'tb_pic_name' => 'required',
-            'tb_contact_number' => 'required'
+            'tb_contact_number' => 'required',
+            'tb_email' => 'required',
+            'tb_bank_name' => 'required'
         ]);
 
         $bps = Bp::firstOrNew(['bp_company_name' => $request->tb_company_name]);
@@ -32,6 +34,8 @@ class BusinessPartnerController extends Controller
         $bps->bp_company_address = $request->tb_company_address;
         $bps->bp_pic_name = $request->tb_pic_name;
         $bps->bp_contact_number = $request->tb_contact_number;
+        $bps->bp_email = $request->tb_email;
+        $bps->bp_bank_name = $request->tb_bank_name;
         $bps->save();
         return redirect()->route('bp.index')->with('message', 'data successfuly added');
     }
@@ -49,6 +53,8 @@ class BusinessPartnerController extends Controller
         $bps->bp_company_address = $request->tb_bp_company_address;
         $bps->bp_pic_name = $request->tb_bp_pic_name;
         $bps->bp_contact_number = $request->tb_bp_contact_number;
+        $bps->bp_email = $request->tb_bp_email;
+        $bps->bp_bank_name = $request->tb_bp_bank_name;
         $bps->save();
         return redirect()->route('bp.index')->with('message', 'data successfuly updated');
     }

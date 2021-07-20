@@ -19,6 +19,8 @@ class CreateBpsTable extends Migration
             $table->string('bp_company_address');
             $table->string('bp_pic_name');
             $table->string('bp_contact_number');
+            $table->string('bp_email');
+            $table->string('bp_bank_name');
             $table->timestamps();
         });
     }

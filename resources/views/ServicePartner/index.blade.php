@@ -81,6 +81,20 @@ Yaksa Harmoni Global | Data Service Partner
                       <small style="color: red">this field is required</small>
                   @enderror
                 </div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="text" name="tb_email" class="form-control">
+                  @error('tb_email')
+                      <small style="color: red">this field is required</small>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label>Bank Name</label>
+                  <input type="text" name="tb_bank_name" class="form-control">
+                  @error('tb_bank_name')
+                      <small style="color: red">this field is required</small>
+                  @enderror
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div>
               <!-- /.card-body -->
@@ -108,7 +122,9 @@ Yaksa Harmoni Global | Data Service Partner
               <th>Company Address</th>
               <th>PIC Name</th>
               <th>Contact Name</th>
-              <th>Tools</th>
+              <th>Email</th>
+              <th>Bank Name</th>
+              <th>Details Info</th>
             </tr>
             </thead>
             <tbody>
@@ -119,6 +135,8 @@ Yaksa Harmoni Global | Data Service Partner
                         <td>{{$sp->sp_company_address}}</td>
                         <td>{{$sp->sp_pic_name}}</td>
                         <td>{{$sp->sp_contact_number}}</td>
+                        <td>{{$sp->sp_email}}</td>
+                        <td>{{$sp->sp_bank_name}}</td>
                         <td>
                             <button onclick="edit('{{$sp->id}}')" class="btn btn-success float-right mr-2"><i class="fa fa-pencil-alt"></i></button>
                             <a onclick="return  confirm('are you sure?')" class="btn btn-danger float-right mr-2" href="{{route('sp.delete',['id'=>$sp->id])}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
@@ -126,7 +144,7 @@ Yaksa Harmoni Global | Data Service Partner
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6" align="center">No Data</td>
+                        <td colspan="8" align="center">No Data</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -137,7 +155,9 @@ Yaksa Harmoni Global | Data Service Partner
                 <th>Company Address</th>
                 <th>PIC Name</th>
                 <th>Contact Name</th>
-                <th>tools</th>
+                <th>Email</th>
+                <th>Bank Name</th>
+                <th>Details Info</th>
             </tr>
             </tfoot>
         </table>
@@ -162,26 +182,38 @@ Yaksa Harmoni Global | Data Service Partner
                     @csrf
                     <div class="form-group row">
                         <div class="col-12">
-                            <label for="tb_bp_company_name" class="form-label">Company Name</label>
+                            <label for="tb_sp_company_name" class="form-label">Company Name</label>
                             <input type="text" id="tb_sp_company_name" name="tb_sp_company_name" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
-                            <label for="tb_bp_company_address" class="form-label">Company Address</label>
+                            <label for="tb_sp_company_address" class="form-label">Company Address</label>
                             <input type="text" id="tb_sp_company_address" name="tb_sp_company_address" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
-                            <label for="tb_bp_pic_name" class="form-label">PIC Name</label>
+                            <label for="tb_sp_pic_name" class="form-label">PIC Name</label>
                             <input type="text" id="tb_sp_pic_name" name="tb_sp_pic_name" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
-                            <label for="tb_bp_contact_number" class="form-label">Contact Number</label>
+                            <label for="tb_sp_contact_number" class="form-label">Contact Number</label>
                             <input type="text" id="tb_sp_contact_number" name="tb_sp_contact_number" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label for="tb_sp_email" class="form-label">Email</label>
+                            <input type="text" id="tb_sp_email" name="tb_sp_email" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label for="tb_sp_bank_name" class="form-label">Bank Name</label>
+                            <input type="text" id="tb_sp_bank_name" name="tb_sp_bank_name" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -215,7 +247,6 @@ Yaksa Harmoni Global | Data Service Partner
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,
@@ -241,6 +272,8 @@ function edit(id){
             $('#tb_sp_company_address').val(response['sp_company_address']);
             $('#tb_sp_pic_name').val(response['sp_pic_name']);
             $('#tb_sp_contact_number').val(response['sp_contact_number']);
+            $('#tb_sp_email').val(response['sp_email']);
+            $('#tb_sp_bank_name').val(response['sp_bank_name']);
             $('#update-modal').modal('show');
         }
     });

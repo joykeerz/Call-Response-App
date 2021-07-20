@@ -91,7 +91,7 @@ Yaksa Harmoni Global | Data Client/Customer
               <th>Customer Name</th>
               <th>Site Location</th>
               <th>Site Address</th>
-              <th>Tools</th>
+              <th>Details Info</th>
             </tr>
             </thead>
             <tbody>
@@ -118,7 +118,7 @@ Yaksa Harmoni Global | Data Client/Customer
                 <th>Customer Name</th>
                 <th>Site Location</th>
                 <th>Site Address</th>
-                <th>Tools</th>
+                <th>Details Info</th>
             </tr>
             </tfoot>
         </table>
@@ -190,7 +190,6 @@ Yaksa Harmoni Global | Data Client/Customer
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,
