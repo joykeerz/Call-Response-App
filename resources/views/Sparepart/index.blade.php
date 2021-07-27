@@ -141,7 +141,7 @@ Yaksa Harmoni Global | Data Sparepart
                         <td>{{$sparepart->part_name}}</td>
                         <td>{{$sparepart->part_condition}}</td>
                         <td>{{$sparepart->part_qty}}</td>
-                        <td>{{$sparepart->product_detail_id}}</td>
+                        <td>{{$sparepart->product_name}} | {{$sparepart->brand_name}} | {{$sparepart->type_series}}</td>
                         <td>{{$sparepart->part_date_of_entry}}</td>
                         <td>{{$sparepart->part_out_date}}</td>
                         <td>

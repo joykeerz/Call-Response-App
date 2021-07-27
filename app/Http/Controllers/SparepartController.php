@@ -17,8 +17,12 @@ class SparepartController extends Controller
 
     public function index()
     {
-        $spareparts = Sparepart::all();
+        // $spareparts = Sparepart::all();
         $products = ProductDetail::all();
+        $spareparts = DB::table('spareparts')
+            ->join('product_details', 'spareparts.product_detail_id', '=', 'product_details.id')
+            ->select('spareparts.*', 'product_details.*')
+            ->get();
         return view('Sparepart.index', ['spareparts' => $spareparts, 'products' => $products]);
     }
 
