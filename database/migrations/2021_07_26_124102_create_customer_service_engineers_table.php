@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductDetailsTable extends Migration
+class CreateCustomerServiceEngineersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateProductDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_details', function (Blueprint $table) {
+        Schema::create('customer_service_engineers', function (Blueprint $table) {
             $table->id();
-            $table->string('product_name');
-            $table->string('brand_name');
-            $table->string('type_series');
-            $table->string('serial_number');
-            $table->dateTime('date_of_entry');
+            $table->unsignedBigInteger('sp_id')->nullable();
+            $table->string('nama_cse');
+            $table->string('initial_cse');
+            $table->string('area_cse');
+            $table->string('hp_cse');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateProductDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_details');
+        Schema::dropIfExists('customer_service_engineers');
     }
 }

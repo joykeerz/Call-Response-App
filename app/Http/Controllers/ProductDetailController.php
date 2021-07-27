@@ -25,9 +25,7 @@ class ProductDetailController extends Controller
         $productDetail->brand_name = $request->tb_brand_name;
         $productDetail->type_series = $request->tb_type_series;
         $productDetail->serial_number = $request->tb_serial_number;
-        $productDetail->id_number = $request->tb_id_number;
         $productDetail->date_of_entry = $request->tb_entry_date;
-        $productDetail->activation_date = $request->tb_activation_date;
         $productDetail->save();
         return redirect()->route('pd.index')->with('message', 'data successfuly added');
     }
@@ -45,9 +43,7 @@ class ProductDetailController extends Controller
         $productDetail->brand_name = $request->tb_pd_brand_name;
         $productDetail->type_series = $request->tb_pd_type_series;
         $productDetail->serial_number = $request->tb_pd_serial_number;
-        $productDetail->id_number = $request->tb_pd_id_number;
         $productDetail->date_of_entry = $request->tb_pd_entry_date;
-        $productDetail->activation_date = $request->tb_pd_activation_date;
         $productDetail->save();
         return redirect()->route('pd.index')->with('message', 'data successfuly updated');
     }

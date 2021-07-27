@@ -97,4 +97,13 @@ Route::middleware(['auth', 'Admin'])->group(function () {
         Route::post('/update/{id}', 'ClientController@update')->name('cl.update');
         Route::get('/delete/{id}', 'ClientController@delete')->name('cl.delete');
     });
+
+    ///Customer Service Engineer
+    Route::prefix('cse')->group(function () {
+        Route::get('/', 'CustomerServiceEngineerController@index')->name('cse.index');
+        Route::post('/store', 'CustomerServiceEngineerController@store')->name('cse.store');
+        Route::get('/edit/{id}', 'CustomerServiceEngineerController@edit')->name('cse.edit');
+        Route::post('/update/{id}', 'CustomerServiceEngineerController@update')->name('cse.update');
+        Route::get('/delete/{id}', 'CustomerServiceEngineerController@delete')->name('cse.delete');
+    });
 });

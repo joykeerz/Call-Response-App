@@ -19,14 +19,6 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('admin123'),
         ]);
         DB::table('sps')->insert([
-            'sp_company_name' => 'dummy sp',
-            'sp_company_address' => 'dummy sp address',
-            'sp_pic_name' => 'dummy sp pic name',
-            'sp_contact_number' => 'dummy sp contact',
-            'sp_email' => 'dummy sp email',
-            'sp_bank_name' => 'dummy sp bank name'
-        ]);
-        DB::table('sps')->insert([
             'sp_company_name' => 'none',
             'sp_company_address' => 'none',
             'sp_pic_name' => 'none',
@@ -34,13 +26,13 @@ class DatabaseSeeder extends Seeder
             'sp_email' => 'none',
             'sp_bank_name' => 'none'
         ]);
-        DB::table('bps')->insert([
-            'bp_company_name' => 'dummy bp',
-            'bp_company_address' => 'dummy bp address',
-            'bp_pic_name' => 'dummy bp pic name',
-            'bp_contact_number' => 'dummy bp contact',
-            'bp_email' => 'dummy bp email',
-            'bp_bank_name' => 'dummy bp bank name'
+        DB::table('sps')->insert([
+            'sp_company_name' => 'dummy sp',
+            'sp_company_address' => 'dummy sp address',
+            'sp_pic_name' => 'dummy sp pic name',
+            'sp_contact_number' => 'dummy sp contact',
+            'sp_email' => 'dummy sp email',
+            'sp_bank_name' => 'dummy sp bank name'
         ]);
         DB::table('bps')->insert([
             'bp_company_name' => 'none',
@@ -50,13 +42,23 @@ class DatabaseSeeder extends Seeder
             'bp_email' => 'none',
             'bp_bank_name' => 'none',
         ]);
+        DB::table('bps')->insert([
+            'bp_company_name' => 'dummy bp',
+            'bp_company_address' => 'dummy bp address',
+            'bp_pic_name' => 'dummy bp pic name',
+            'bp_contact_number' => 'dummy bp contact',
+            'bp_email' => 'dummy bp email',
+            'bp_bank_name' => 'dummy bp bank name'
+        ]);
         DB::table('spareparts')->insert([
             'part_number' => 'dummy part number',
             'part_serial' => 'dummy serial number',
             'part_name' => 'dummy part name',
+            'part_condition' => 'new',
+            'part_qty' => 1,
+            'product_detail_id' => 1,
             'part_date_of_entry' => now(),
             'part_out_date' => now(),
-            'part_condition' => 'new',
         ]);
         DB::table('clients')->insert([
             'client_customer_name' => 'dummy client',
@@ -68,9 +70,14 @@ class DatabaseSeeder extends Seeder
             'brand_name' => 'dummy brand',
             'type_series' => 'dummy type',
             'serial_number' => 'dummy serial',
-            'id_number' => 'dummy id',
             'date_of_entry' => now(),
-            'activation_date' => now(),
+        ]);
+        DB::table('customer_service_engineers')->insert([
+            'sp_id' => 1,
+            'nama_cse' => 'none',
+            'initial_cse' => 'none',
+            'area_cse' => 'none',
+            'hp_cse' => 'none',
         ]);
     }
 }

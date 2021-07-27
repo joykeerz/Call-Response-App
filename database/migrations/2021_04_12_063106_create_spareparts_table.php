@@ -15,12 +15,15 @@ class CreateSparepartsTable extends Migration
     {
         Schema::create('spareparts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('product_detail_id')->nullable();
+
             $table->string('part_number');
             $table->string('part_serial');
             $table->string('part_name');
+            $table->string('part_condition');
+            $table->integer('part_qty');
             $table->date('part_date_of_entry');
             $table->date('part_out_date');
-            $table->string('part_condition');
             $table->timestamps();
         });
     }

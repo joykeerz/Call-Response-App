@@ -116,7 +116,7 @@
               </li>
               <li class="nav-item">
                 <a href="{{route('pd.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-shopping-basket nav-icon"></i>
                   <p>Product Detail</p>
                 </a>
               </li>
@@ -130,6 +130,12 @@
                 <a href="{{route('cl.index')}}" class="nav-link">
                   <i class="fas fa-users nav-icon"></i>
                   <p>Client/Customer</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('cse.index')}}" class="nav-link">
+                  <i class="fas fa-tools nav-icon"></i>
+                  <p>CS Engineer</p>
                 </a>
               </li>
             </ul>

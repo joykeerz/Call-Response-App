@@ -1,17 +1,17 @@
 @extends('layouts.dashboard')
 @section('title')
-Yaksa Harmoni Global | Data Detail Products
+Yaksa Harmoni Global | Customer Service Engineer
 @endsection
 @section('header')
 <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Products Detail Data</h1>
+        <h1>Customer Service Engineer</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Products Detail</li>
+          <li class="breadcrumb-item active">Customer Service Engineer</li>
         </ol>
       </div>
     </div>
@@ -23,6 +23,9 @@ Yaksa Harmoni Global | Data Detail Products
 <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('template/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+<!-- Select2 -->
+<link rel="stylesheet" href="{{ asset('template/plugins/select2/css/select2.min.css')}}">
+<link rel="stylesheet" href="{{ asset('template/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 @endsection
 
 @section('content')
@@ -40,11 +43,11 @@ Yaksa Harmoni Global | Data Detail Products
 
 <div class="row">
     <div class="col-md-12">
-        <form action="{{route('pd.store')}}" method="post">
+        <form action="{{route('cse.store')}}" method="post">
             @csrf
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Form Input Product</h3>
+                <h3 class="card-title">Form Input Customer Service Engineer</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -54,24 +57,31 @@ Yaksa Harmoni Global | Data Detail Products
               </div>
               <div class="card-body">
                 <div class="form-group">
-                  <label>Serial Number</label>
-                  <input type="text" name="tb_serial_number" class="form-control">
+                  <label>CSE Name</label>
+                  <input type="text" name="tb_cse_name" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label>Product Name</label>
-                    <input type="text" name="tb_product_name" class="form-control">
-                  </div>
-                <div class="form-group">
-                  <label>Brand Name</label>
-                  <input type="text" name="tb_brand_name" class="form-control">
+                  <label>Initial</label>
+                  <input type="text" name="tb_cse_initial" class="form-control">
                 </div>
                 <div class="form-group">
-                  <label>Type Series</label>
-                  <input type="text" name="tb_type_series" class="form-control">
+                  <label>Area</label>
+                  <input type="text" name="tb_cse_area" class="form-control">
                 </div>
                 <div class="form-group">
-                  <label>Entry Date</label>
-                  <input type="date" name="tb_entry_date" class="form-control">
+                  <label>No. HP</label>
+                  <input type="text" name="tb_cse_hp" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Service Partner</label>
+                    <select class="form-control select2" style="width: 100%;" name="cb_sp" id="cb_sp">
+                        @forelse ($sps as $sp)
+                        <option value="{{$sp->id}}">{{$sp->sp_company_name}}</option>
+                        @empty
+                            <option>No Data</option>
+                        @endforelse
+                    </select>
+                    <small class="form-text text-muted">type Service Partner name to search</small>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div>
@@ -83,7 +93,7 @@ Yaksa Harmoni Global | Data Detail Products
 </div>
 <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Products</h3>
+      <h3 class="card-title">Customer Service Engineer</h3>
 
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -96,50 +106,46 @@ Yaksa Harmoni Global | Data Detail Products
             <thead>
             <tr>
               <th>#</th>
-              <th>Serial Number</th>
-              <th>Product Name</th>
-              <th>Type Series</th>
-              <th>Brand Name</th>
-              <th>Date Of Entry</th>
-              <th>Details Info</th>
+              <th>CSE Name</th>
+              <th>CSE Initial</th>
+              <th>Area</th>
+              <th>No. HP</th>
+              <th>Detail Info</th>
             </tr>
             </thead>
             <tbody>
-                @forelse ($pd as $pd)
+                @forelse ($cse as $cse)
                     <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$pd->serial_number}}</td>
-                        <td>{{$pd->product_name}}</td>
-                        <td>{{$pd->type_series}}</td>
-                        <td>{{$pd->brand_name}}</td>
-                        <td>{{$pd->date_of_entry}}</td>
+                        <td>{{$cse->nama_cse}}</td>
+                        <td>{{$cse->initial_cse}}</td>
+                        <td>{{$cse->area_cse}}</td>
+                        <td>{{$cse->hp_cse}}</td>
                         <td>
-                            <button onclick="edit('{{$pd->id}}')" class="btn btn-success float-right mr-2"><i class="fa fa-pencil-alt"></i></button>
-                            <a onclick="return confirm('are you sure?')" class="btn btn-danger float-right mr-2" href="{{route('pd.delete',['id'=>$pd->id])}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            <button onclick="edit('{{$cse->id}}')" class="btn btn-success float-right mr-2"><i class="fa fa-pencil-alt"></i></button>
+                            <a onclick="return  confirm('are you sure?')" class="btn btn-danger float-right mr-2" href="{{route('cse.delete',['id'=>$cse->id])}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" align="center">No Data</td>
+                        <td colspan="5" align="center">No Data</td>
                     </tr>
                 @endforelse
             </tbody>
             <tfoot>
             <tr>
                 <th>#</th>
-                <th>ID Number</th>
-                <th>Product Name</th>
-                <th>Type Series</th>
-                <th>Brand Name</th>
-                <th>Date Of Entry</th>
-                <th>Details Info</th>
+                <th>CSE Name</th>
+                <th>CSE Initial</th>
+                <th>Area</th>
+                <th>No. HP</th>
+                <th>Detail Info</th>
             </tr>
             </tfoot>
         </table>
     </div>
     <!-- /.card-body -->
     <div class="card-footer">
-
     </div>
     <!-- /.card-footer-->
 
@@ -148,7 +154,7 @@ Yaksa Harmoni Global | Data Detail Products
         <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit Service Partner</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Edit Customer Service Engineer</h5>
             <button type="button" class="btn-close" onclick="closeModal()" aria-label="Close">
                 <i class="fa fa-times" aria-hidden="true"></i>
             </button>
@@ -158,32 +164,40 @@ Yaksa Harmoni Global | Data Detail Products
                     @csrf
                     <div class="form-group row">
                         <div class="col-12">
-                            <label for="tb_pd_serial_number" class="form-label">Serial Number</label>
-                            <input type="text" id="tb_pd_serial_number" name="tb_pd_serial_number" class="form-control">
+                            <label for="tbCseName" class="form-label">CSE Name</label>
+                            <input type="text" id="tbCseName" name="tbCseName" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
-                            <label for="tb_pd_product_name" class="form-label">Product Name</label>
-                            <input type="text" id="tb_pd_product_name" name="tb_pd_product_name" class="form-control">
+                            <label for="tbCseInitial" class="form-label">Initial</label>
+                            <input type="text" id="tbCseInitial" name="tbCseInitial" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
-                            <label for="tb_pd_brand_name" class="form-label">Brand Name</label>
-                            <input type="text" id="tb_pd_brand_name" name="tb_pd_brand_name" class="form-control">
+                            <label for="tbCseArea" class="form-label">Area</label>
+                            <input type="text" id="tbCseArea" name="tbCseArea" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
-                            <label for="tb_pd_type_series" class="form-label">Type Series</label>
-                            <input type="text" id="tb_pd_type_series" name="tb_pd_type_series" class="form-control">
+                            <label for="tbCseHp" class="form-label">No. HP</label>
+                            <input type="text" id="tbCseHp" name="tbCseHp" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
-                            <label for="tb_pd_entry_date" class="form-label">Entry Date</label>
-                            <input type="date" id="tb_pd_entry_date" name="tb_pd_entry_date" class="form-control">
+                            <label>Service Partner</label><br>
+                            <label id="lblCurrent"></label>
+                            <select class="form-control select2" style="width: 100%;" name="cbSp" id="cbSp">
+                                @forelse ($sps as $sp)
+                                <option value="{{$sp->id}}">{{$sp->sp_company_name}}</option>
+                                @empty
+                                    <option>No Data</option>
+                                @endforelse
+                            </select>
+                            <small class="form-text text-muted">type Service Partner name to search</small>
                         </div>
                     </div>
                 </div>
@@ -212,7 +226,10 @@ Yaksa Harmoni Global | Data Detail Products
 <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<!-- Select2 -->
+<script src="{{ asset('template/plugins/select2/js/select2.full.min.js')}}"></script>
 <!-- Page specific script -->
+
 <script>
   $(function () {
     $("#example1").DataTable({
@@ -227,22 +244,26 @@ Yaksa Harmoni Global | Data Detail Products
       "autoWidth": false,
       "responsive": true,
     });
+    $('.select2').select2({
+        theme: 'bootstrap4'
+    })
   });
 </script>
+
 <script>
 function edit(id){
-    var url = '/product/edit/'+id;
-    var link = '/product/update/'+id;
+    var url = '/cse/edit/'+id;
+    var link = '/cse/update/'+id;
     $.ajax({
         url : url,
         method: 'get',
         success: function(response) {
             $('#form-update').prop('action', link);
-            $('#tb_pd_serial_number').val(response['serial_number']);
-            $('#tb_pd_product_name').val(response['product_name']);
-            $('#tb_pd_brand_name').val(response['brand_name']);
-            $('#tb_pd_type_series').val(response['type_series']);
-            $('#tb_pd_entry_date').val(response['date_of_entry']);
+            $('#tbCseName').val(response['nama_cse']);
+            $('#tbCseInitial').val(response['initial_cse']);
+            $('#tbCseArea').val(response['area_cse']);
+            $('#tbCseHp').val(response['hp_cse']);
+            $('#lblCurrent').html('Current : '+response['sp_company_name']);
             $('#update-modal').modal('show');
         }
     });

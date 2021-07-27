@@ -23,6 +23,9 @@ Yaksa Harmoni Global | Data Sparepart
 <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('template/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+<!-- Select2 -->
+<link rel="stylesheet" href="{{ asset('template/plugins/select2/css/select2.min.css')}}">
+<link rel="stylesheet" href="{{ asset('template/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 @endsection
 
 @section('content')
@@ -66,6 +69,17 @@ Yaksa Harmoni Global | Data Sparepart
                   <input type="text" name="tb_part_name" class="form-control">
                 </div>
                 <div class="form-group">
+                    <label for="cb_condition">Condition</label>
+                    <select class="form-control" name="cb_condition" id="cb_condition">
+                        <option>New</option>
+                        <option>Used</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                  <label>Quantity</label>
+                  <input type="number" name="tb_part_qty" class="form-control">
+                </div>
+                <div class="form-group">
                   <label>Date Entry</label>
                   <input type="date" name="tb_date_entry" class="form-control">
                 </div>
@@ -74,11 +88,15 @@ Yaksa Harmoni Global | Data Sparepart
                   <input type="date" name="tb_date_out" class="form-control">
                 </div>
                 <div class="form-group">
-                <label for="cb_condition">Condition</label>
-                <select class="form-control" name="cb_condition" id="cb_condition">
-                    <option>New</option>
-                    <option>Used</option>
-                </select>
+                    <label>Product</label>
+                    <select class="form-control select2" style="width: 100%;" name="cb_product" id="cb_product">
+                        @forelse ($products as $product)
+                        <option value="{{$product->id}}">{{$product->product_name}} | {{$product->brand_name}} | {{$product->type_series}}</option>
+                        @empty
+                            <option>No Data</option>
+                        @endforelse
+                    </select>
+                    <small class="form-text text-muted">type Product name to search</small>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div>
@@ -106,9 +124,11 @@ Yaksa Harmoni Global | Data Sparepart
               <th>Part Number</th>
               <th>Part Serial</th>
               <th>Part Name</th>
+              <th>Condition</th>
+              <th>Qty</th>
+              <th>Product Detail</th>
               <th>Date Entry</th>
               <th>Date Out</th>
-              <th>Condition</th>
               <th>Details Info</th>
             </tr>
             </thead>
@@ -119,9 +139,11 @@ Yaksa Harmoni Global | Data Sparepart
                         <td>{{$sparepart->part_number}}</td>
                         <td>{{$sparepart->part_serial}}</td>
                         <td>{{$sparepart->part_name}}</td>
+                        <td>{{$sparepart->part_condition}}</td>
+                        <td>{{$sparepart->part_qty}}</td>
+                        <td>{{$sparepart->product_detail_id}}</td>
                         <td>{{$sparepart->part_date_of_entry}}</td>
                         <td>{{$sparepart->part_out_date}}</td>
-                        <td>{{$sparepart->part_condition}}</td>
                         <td>
                             <button onclick="edit('{{$sparepart->id}}')" class="btn btn-success float-right mr-2"><i class="fa fa-pencil-alt"></i></button>
                             <a onclick="return confirm('are you sure?')" class="btn btn-danger float-right mr-2" href="{{route('spp.delete',['id'=>$sparepart->id])}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
@@ -129,20 +151,22 @@ Yaksa Harmoni Global | Data Sparepart
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="8" align="center">No Data</td>
+                        <td colspan="10" align="center">No Data</td>
                     </tr>
                 @endforelse
             </tbody>
             <tfoot>
             <tr>
-                <th>#</th>
-                <th>Part Number</th>
-                <th>Part Serial</th>
-                <th>Part Name</th>
-                <th>Date Entry</th>
-                <th>Date Out</th>
-                <th>Condition</th>
-                <th>Details Info</th>
+              <th>#</th>
+              <th>Part Number</th>
+              <th>Part Serial</th>
+              <th>Part Name</th>
+              <th>Qty</th>
+              <th>Date Entry</th>
+              <th>Date Out</th>
+              <th>Condition</th>
+              <th>Product Detail</th>
+              <th>Details Info</th>
             </tr>
             </tfoot>
         </table>
@@ -186,6 +210,36 @@ Yaksa Harmoni Global | Data Sparepart
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
+                            <label for="cbCondition" class="form-label">Condition</label><br>
+                            <label id="lblCurrentCondition"></label>
+                            <select class="form-control" name="cbCondition" id="cbCondition">
+                                <option>New</option>
+                                <option>Used</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label for="tbPartQty" class="form-label">Part Quantity</label>
+                            <input type="text" id="tbPartQty" name="tbPartQty" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label>Product</label><br>
+                            <label id="lblCurrentProduct"></label>
+                            <select class="form-control select2" style="width: 100%;" name="cbProduct" id="cbProduct">
+                                @forelse ($products as $product)
+                                <option value="{{$product->id}}">{{$product->product_name}} | {{$product->brand_name}} | {{$product->type_series}}</option>
+                                @empty
+                                    <option>No Data</option>
+                                @endforelse
+                            </select>
+                            <small class="form-text text-muted">type Product name to search</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
                             <label for="tbDateEntry" class="form-label">Date Entry</label>
                             <input type="date" id="tbDateEntry" name="tbDateEntry" class="form-control">
                         </div>
@@ -194,15 +248,6 @@ Yaksa Harmoni Global | Data Sparepart
                         <div class="col-12">
                             <label for="tbDateOut" class="form-label">Date Out</label>
                             <input type="date" id="tbDateOut" name="tbDateOut" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <label for="cbCondition" class="form-label">Condition</label>
-                            <select class="form-control" name="cbCondition" id="cbCondition">
-                                <option>New</option>
-                                <option>Used</option>
-                            </select>
                         </div>
                     </div>
                 </div>
@@ -231,6 +276,8 @@ Yaksa Harmoni Global | Data Sparepart
 <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<!-- Select2 -->
+<script src="{{ asset('template/plugins/select2/js/select2.full.min.js')}}"></script>
 <!-- Page specific script -->
 <script>
   $(function () {
@@ -246,6 +293,10 @@ Yaksa Harmoni Global | Data Sparepart
       "autoWidth": false,
       "responsive": true,
     });
+
+    $('.select2').select2({
+        theme: 'bootstrap4'
+    })
   });
 </script>
 
@@ -261,9 +312,11 @@ function edit(id){
             $('#tbPartNumber').val(response['part_number']);
             $('#tbSerialNumber').val(response['part_serial']);
             $('#tbPartName').val(response['part_name']);
+            $('#tbPartQty').val(response['part_qty']);
+            $('#lblCurrentCondition').html('Current : '+response['part_condition']);
+            $('#lblCurrentProduct').html('Current : '+response['product_name']);
             $('#tbDateEntry').val(response['part_date_of_entry']);
             $('#tbDateOut').val(response['part_out_date']);
-            $('#cbCondition').val(response['part_condition']);
             $('#update-modal').modal('show');
         }
     });
