@@ -61,9 +61,15 @@ class DatabaseSeeder extends Seeder
             'part_out_date' => now(),
         ]);
         DB::table('clients')->insert([
+            'product_detail_id' => 1,
             'client_customer_name' => 'dummy client',
+            'client_machine_id' => 1,
+            'client_machine_status' => 'new',
+            'client_pic_name' => 'dummy pic name',
+            'client_pic_hp' => '0211231231',
             'client_site_location_name' => 'dummy site loc.',
             'client_site_location_address' => 'dummy address',
+            'client_activation_date' => now(),
         ]);
         DB::table('product_details')->insert([
             'product_name' => 'dummy product',

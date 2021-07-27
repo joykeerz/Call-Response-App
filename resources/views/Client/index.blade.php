@@ -23,6 +23,9 @@ Yaksa Harmoni Global | Data Client/Customer
 <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('template/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+<!-- Select2 -->
+<link rel="stylesheet" href="{{ asset('template/plugins/select2/css/select2.min.css')}}">
+<link rel="stylesheet" href="{{ asset('template/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 @endsection
 
 @section('content')
@@ -57,6 +60,40 @@ Yaksa Harmoni Global | Data Client/Customer
                   <label>Customer Name</label>
                   <input type="text" name="tb_customer_name" class="form-control">
                 </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label>Machine ID</label>
+                        <input type="text" name="tb_machine_id" class="form-control ">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Status</label>
+                        <select name="cb_machine_status" id="cb_machine_status" class="form-control select2">
+                            <option value="new">new machine</option>
+                            <option value="transfered">transfered machine</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label>PIC Name</label>
+                        <input type="text" name="tb_pic_name" class="form-control ">
+                    </div>
+                    <div class="col-md-6">
+                        <label>PIC No. HP</label>
+                        <input type="text" name="tb_pic_hp" class="form-control ">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                        <select name="cb_product" id="cb_product" class="form-control select2">
+                            @forelse ($products as $product)
+                                <option value="{{$product->id}}">{{$product->product_name}} | {{$product->brand_name}} | {{$product->type_series}}</option>
+                            @empty
+                                <option>No Data</option>
+                            @endforelse
+                        </select>
+                </div>
                 <div class="form-group">
                   <label>Site Location</label>
                   <input type="text" name="tb_site_location" class="form-control">
@@ -64,6 +101,10 @@ Yaksa Harmoni Global | Data Client/Customer
                 <div class="form-group">
                   <label>Site Address</label>
                   <input type="text" name="tb_site_address" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Activation Date</label>
+                  <input type="date" name="dt_activation_date" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div>
@@ -89,8 +130,14 @@ Yaksa Harmoni Global | Data Client/Customer
             <tr>
               <th>#</th>
               <th>Customer Name</th>
+              <th>Machine ID</th>
+              <th>Machine Status</th>
+              <th>Product</th>
+              <th>PIC Name</th>
+              <th>PIC No.HP</th>
               <th>Site Location</th>
               <th>Site Address</th>
+              <th>Activation Date</th>
               <th>Details Info</th>
             </tr>
             </thead>
@@ -99,8 +146,14 @@ Yaksa Harmoni Global | Data Client/Customer
                     <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$cl->client_customer_name}}</td>
+                        <td>{{$cl->client_machine_id}}</td>
+                        <td>{{$cl->client_machine_status}}</td>
+                        <td>{{$cl->product_detail_id}}</td>
+                        <td>{{$cl->client_pic_name}}</td>
+                        <td>{{$cl->client_pic_hp}}</td>
                         <td>{{$cl->client_site_location_name}}</td>
                         <td>{{$cl->client_site_location_address}}</td>
+                        <td>{{$cl->client_activation_date}}</td>
                         <td>
                             <button onclick="edit('{{$cl->id}}')" class="btn btn-success float-right mr-2"><i class="fa fa-pencil-alt"></i></button>
                             <a onclick="return  confirm('are you sure?')" class="btn btn-danger float-right mr-2" href="{{route('cl.delete',['id'=>$cl->id])}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
@@ -108,17 +161,23 @@ Yaksa Harmoni Global | Data Client/Customer
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" align="center">No Data</td>
+                        <td colspan="11" align="center">No Data</td>
                     </tr>
                 @endforelse
             </tbody>
             <tfoot>
             <tr>
-                <th>#</th>
-                <th>Customer Name</th>
-                <th>Site Location</th>
-                <th>Site Address</th>
-                <th>Details Info</th>
+              <th>#</th>
+              <th>Customer Name</th>
+              <th>Machine ID</th>
+              <th>Machine Status</th>
+              <th>Product</th>
+              <th>PIC Name</th>
+              <th>PIC No.HP</th>
+              <th>Site Location</th>
+              <th>Site Address</th>
+              <th>Activation Date</th>
+              <th>Details Info</th>
             </tr>
             </tfoot>
         </table>
@@ -148,6 +207,44 @@ Yaksa Harmoni Global | Data Client/Customer
                         </div>
                     </div>
                     <div class="form-group row">
+                        <div class="col-md-6">
+                            <label>Machine ID</label>
+                            <input type="text" name="tbMachineId" id="tbMachineId" class="form-control ">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Status</label>
+                            <label id="lblCurrentStatus"></label>
+                            <select name="cbMachineStatus" id="cbMachineStatus" class="form-control select2">
+                                <option value="new">new machine</option>
+                                <option value="transfered">transfered machine</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label>PIC Name</label>
+                            <input type="text" name="tbPicName" id="tbPicName" class="form-control ">
+                        </div>
+                        <div class="col-md-6">
+                            <label>PIC No. HP</label>
+                            <input type="text" name="tbPicHp" id="tbPicHp" class="form-control ">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label>Product</label>
+                            <label id="lblCurrentProduct"></label>
+                            <select name="cbProduct" id="cbProduct" class="form-control select2">
+                                @forelse ($products as $product)
+                                    <option value="{{$product->id}}">{{$product->product_name}} | {{$product->brand_name}} | {{$product->type_series}}</option>
+                                @empty
+                                    <option>No Data</option>
+                                @endforelse
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <div class="col-12">
                             <label for="tbSiteLocation" class="form-label">Site Location</label>
                             <input type="text" id="tbSiteLocation" name="tbSiteLocation" class="form-control">
@@ -157,6 +254,12 @@ Yaksa Harmoni Global | Data Client/Customer
                         <div class="col-12">
                             <label for="tbSiteAddress" class="form-label">Site Address</label>
                             <input type="text" id="tbSiteAddress" name="tbSiteAddress" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label for="dtActivationDate" class="form-label">Activation Date</label>
+                            <input type="date" id="dtActivationDate" name="dtActivationDate" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -185,6 +288,8 @@ Yaksa Harmoni Global | Data Client/Customer
 <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<!-- Select2 -->
+<script src="{{ asset('template/plugins/select2/js/select2.full.min.js')}}"></script>
 <!-- Page specific script -->
 <script>
   $(function () {
@@ -200,9 +305,13 @@ Yaksa Harmoni Global | Data Client/Customer
       "autoWidth": false,
       "responsive": true,
     });
+
   });
 </script>
 <script>
+    $('.select2').select2({
+        theme: 'bootstrap4'
+    })
 function edit(id){
     var url = '/client/edit/'+id;
     var link = '/client/update/'+id;
@@ -211,9 +320,15 @@ function edit(id){
         method: 'get',
         success: function(response) {
             $('#form-update').prop('action', link);
+            $('#lblCurrentProduct').html(' | current : '+response['product_name']);
             $('#tbCustomerName').val(response['client_customer_name']);
+            $('#tbMachineId').val(response['client_machine_id']);
+            $('#lblCurrentStatus').html(' | current : '+response['client_machine_status']);
+            $('#tbPicName').val(response['client_pic_name']);
+            $('#tbPicHp').val(response['client_pic_hp']);
             $('#tbSiteLocation').val(response['client_site_location_name']);
             $('#tbSiteAddress').val(response['client_site_location_address']);
+            $('#dtActivationDate').val(response['client_activation_date']);
             $('#update-modal').modal('show');
         }
     });
