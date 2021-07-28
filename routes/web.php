@@ -28,7 +28,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 ///admin route
-Route::middleware(['auth', 'Admin'])->group(function () {
+Route::middleware(['auth', 'UserAdmin'])->group(function () {
     Route::prefix('profile')->group(function () {
         Route::post('/manage/user/create', 'ProfileController@createUser')->name('userProfile.createUser');
         Route::get('/manage/user/delete/{id}', 'ProfileController@deleteUser')->name('userProfile.deleteUser');
