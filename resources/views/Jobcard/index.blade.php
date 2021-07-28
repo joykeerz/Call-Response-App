@@ -53,6 +53,15 @@ Yaksa Harmoni Global | New Jobcard
                             @endforelse
                         </select>
                         <small class="form-text text-muted">type customer name to search</small>
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="form-text text-muted">Machine ID : <b id="lblMachineId"></b></h6>
+                                <br>
+                                <small class="text-muted form-text">
+                                    select customer to show information.
+                                </small>
+                            </div>
+                          </div>
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -123,7 +132,7 @@ Yaksa Harmoni Global | New Jobcard
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-6 col-sm-6">
+        {{-- <div class="col-12 col-md-6 col-sm-6">
             <div class="card">
                 <div class="card-header">
                     <h4>
@@ -143,6 +152,7 @@ Yaksa Harmoni Global | New Jobcard
                         </select>
                         <small class="form-text text-muted">type machine id to search machine</small>
                     </div>
+            --}}
                     {{-- <div class="form-group">
                         <label for="myInput">Machine ID</label>
                         <input type="text" class="form-control" id="myInput" name="tb_id_number">
@@ -175,9 +185,10 @@ Yaksa Harmoni Global | New Jobcard
                               </table>
                         </div>
                     </div> --}}
+                    {{--
                 </div>
             </div>
-        </div>
+        </div>--}}
     </div>
 </form>
 @endsection
@@ -236,6 +247,21 @@ Yaksa Harmoni Global | New Jobcard
         table2.search( this.value ).draw();
     });
 
+    ///fungsi get data client saat select berubah
+    $('#tb_customer').change(function (e) {
+        e.preventDefault();
+        console.log($(this).val());
+        var id = $(this).val();
+        var url = '/jobcard/getClientDataAjax/'+id;
+        $.ajax({
+            url: url,
+            method: "get",
+            success: function (response) {
+                console.table(response);
+                $('#lblMachineId').text(response.client_machine_id);
+            }
+        });
+    });
 });
 </script>
 @endsection

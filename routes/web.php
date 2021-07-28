@@ -51,6 +51,7 @@ Route::middleware(['auth', 'Admin'])->group(function () {
         Route::get('/detail/{id}/close', 'JobcardController@closeTicket')->name('jobcard.closeTicket');
 
         Route::post('/countWaitingTime', 'JobcardController@countWaitingTime');
+        Route::get('/getClientDataAjax/{id}', 'JobcardController@getClientDataAjax')->name('jobcard.getClientDataAjax');
     });
 
     ///bp

@@ -99,7 +99,7 @@
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
         <img src="{{asset('template/dist/img/yaksa/logo.jpg')}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
-      <a href="../../index2.html" class="h2"><b>Call Response </b>App</a>
+      <a href="../../index2.html" class="h2"><b>Call Management </b>App</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>

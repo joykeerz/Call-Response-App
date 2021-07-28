@@ -33,7 +33,7 @@ class JobcardController extends Controller
     {
         $jobcardId = DB::table('jobcards')->insertGetId([
             'client_id' => $request->tb_customer,
-            'product_detail_id' => $request->tb_id_number,
+            // 'product_detail_id' => $request->tb_id_number,
             'bp_id' => $request->cb_bp,
             'sp_id' => $request->cb_sp,
 
@@ -127,7 +127,7 @@ class JobcardController extends Controller
             ->join('clients', 'jobcards.client_id', '=', 'clients.id')
             ->join('bps', 'jobcards.bp_id', '=', 'bps.id')
             ->join('sps', 'jobcards.sp_id', '=', 'sps.id')
-            ->join('product_details', 'jobcards.product_detail_id', '=', 'product_details.id')
+            ->join('product_details', 'clients.product_detail_id', '=', 'product_details.id')
             ->select('clients.*', 'bps.*', 'sps.*',  'product_details.*', 'jobcards.*')
             ->where('jobcards.id', '=', $id)
             ->first();
@@ -156,5 +156,15 @@ class JobcardController extends Controller
         $end = Carbon::parse($request->dt_working_time);
         $waiting = $end->diffForHumans($start);
         return response()->json($waiting);
+    }
+
+    public function getClientDataAjax($id)
+    {
+        $client = DB::table('clients')
+            ->join('product_details', 'clients.product_detail_id', '=', 'product_details.id')
+            ->select('product_details.*', 'clients.*')
+            ->where('clients.id', '=', $id)
+            ->first();
+        return response()->json($client);
     }
 }

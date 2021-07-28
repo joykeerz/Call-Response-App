@@ -195,11 +195,11 @@
                                 <dt class="col-sm-4">Serial Num. :</dt>
                                 <dd class="col-sm-8">{{$jobcards->serial_number}}</dd>
                                 <dt class="col-sm-4">ID Num. :</dt>
-                                <dd class="col-sm-8">{{$jobcards->id_number}}</dd>
+                                <dd class="col-sm-8">{{$jobcards->client_machine_id}}</dd>
                                 <dt class="col-sm-4">Entry Date :</dt>
                                 <dd class="col-sm-8">{{$jobcards->date_of_entry}}</dd>
                                 <dt class="col-sm-4">Activation Date :</dt>
-                                <dd class="col-sm-8">{{$jobcards->activation_date}}</dd>
+                                <dd class="col-sm-8">{{$jobcards->client_activation_date}}</dd>
                             </dl>
                             </div>
                             <!-- /.card-body -->

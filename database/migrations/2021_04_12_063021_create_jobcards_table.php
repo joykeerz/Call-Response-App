@@ -18,7 +18,7 @@ class CreateJobcardsTable extends Migration
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('bp_id')->nullable();
             $table->unsignedBigInteger('sp_id')->nullable();
-            $table->unsignedBigInteger('product_detail_id');
+            // $table->unsignedBigInteger('product_detail_id');
 
             $table->string('problem_desc');
             $table->string('pic_contact')->default('none');
