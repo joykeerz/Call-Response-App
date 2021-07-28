@@ -108,7 +108,7 @@
                     <td>{{$loop->iteration}}</td>
                     <td>{{$jobcard->jobcard_number}}</td>
                     <td>{{$jobcard->ticket_number}}</td>
-                    <td>{{$jobcard->product_detail_id}}</td>
+                    <td>{{$jobcard->client_machine_id}}</td>
                     <td>{{$jobcard->client_customer_name}}</td>
                     <td>
                         @if (!$jobcard->isClosed)

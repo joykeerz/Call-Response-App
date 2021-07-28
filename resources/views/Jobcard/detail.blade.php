@@ -144,6 +144,16 @@
                                 <dd class="col-sm-8">{{$jobcards->client_site_location_name}}</dd>
                                 <dt class="col-sm-4">Site Address :</dt>
                                 <dd class="col-sm-8">{{$jobcards->client_site_location_address}}</dd>
+                                <dt class="col-sm-4">Machine ID :</dt>
+                                <dd class="col-sm-8">{{$jobcards->client_machine_id}}</dd>
+                                <dt class="col-sm-4">Machine Status :</dt>
+                                <dd class="col-sm-8">{{$jobcards->client_machine_status}}</dd>
+                                <dt class="col-sm-4">PIC Name :</dt>
+                                <dd class="col-sm-8">{{$jobcards->client_pic_name}}</dd>
+                                <dt class="col-sm-4">PIC No.HP :</dt>
+                                <dd class="col-sm-8">{{$jobcards->client_pic_hp}}</dd>
+                                <dt class="col-sm-4">Activation Date :</dt>
+                                <dd class="col-sm-8">{{$jobcards->client_activation_date}}</dd>
                             </dl>
                             </div>
                             <!-- /.card-body -->
@@ -168,6 +178,10 @@
                                 <dd class="col-sm-8">{{$jobcards->bp_pic_name}}</dd>
                                 <dt class="col-sm-4">PIC Contact :</dt>
                                 <dd class="col-sm-8">{{$jobcards->bp_contact_number}}</dd>
+                                <dt class="col-sm-4">Email :</dt>
+                                <dd class="col-sm-8">{{$jobcards->bp_email}}</dd>
+                                <dt class="col-sm-4">Bank Name / Project:</dt>
+                                <dd class="col-sm-8">{{$jobcards->bp_bank_name}}</dd>
                             </dl>
                             </div>
                             <!-- /.card-body -->
@@ -194,12 +208,8 @@
                                 <dd class="col-sm-8">{{$jobcards->type_series}}</dd>
                                 <dt class="col-sm-4">Serial Num. :</dt>
                                 <dd class="col-sm-8">{{$jobcards->serial_number}}</dd>
-                                <dt class="col-sm-4">ID Num. :</dt>
-                                <dd class="col-sm-8">{{$jobcards->client_machine_id}}</dd>
                                 <dt class="col-sm-4">Entry Date :</dt>
                                 <dd class="col-sm-8">{{$jobcards->date_of_entry}}</dd>
-                                <dt class="col-sm-4">Activation Date :</dt>
-                                <dd class="col-sm-8">{{$jobcards->client_activation_date}}</dd>
                             </dl>
                             </div>
                             <!-- /.card-body -->
@@ -224,6 +234,10 @@
                                 <dd class="col-sm-8">{{$jobcards->sp_pic_name}}</dd>
                                 <dt class="col-sm-4">PIC Contact :</dt>
                                 <dd class="col-sm-8">{{$jobcards->sp_contact_number}}</dd>
+                                <dt class="col-sm-4">Email :</dt>
+                                <dd class="col-sm-8">{{$jobcards->sp_email}}</dd>
+                                <dt class="col-sm-4">Bank Name :</dt>
+                                <dd class="col-sm-8">{{$jobcards->sp_bank_name}}</dd>
                             </dl>
                             </div>
                             <!-- /.card-body -->
