@@ -95,7 +95,7 @@ Yaksa Harmoni Global | Data Client/Customer
                         </select>
                 </div>
                 <div class="form-group">
-                    <label>Product</label>
+                    <label>CS Engineer</label>
                         <select name="cb_cse" id="cb_cse" class="form-control select2">
                             @forelse ($cse as $cse)
                                 <option value="{{$cse->id}}">{{$cse->nama_cse}}</option>
@@ -251,6 +251,19 @@ Yaksa Harmoni Global | Data Client/Customer
                             <select name="cbProduct" id="cbProduct" class="form-control select2">
                                 @forelse ($products as $product)
                                     <option value="{{$product->id}}">{{$product->product_name}} | {{$product->brand_name}} | {{$product->type_series}}</option>
+                                @empty
+                                    <option>No Data</option>
+                                @endforelse
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label>CS Engineer (belum Bisa Digunakan</label>
+                            <label id="lblCurrentProduct"></label>
+                            <select name="cbCse" id="cbCse" class="form-control select2">
+                                @forelse ($cse as $cse)
+                                    <option value="{{$cse->id}}">{{$cse->nama_cse}}</option>
                                 @empty
                                     <option>No Data</option>
                                 @endforelse
