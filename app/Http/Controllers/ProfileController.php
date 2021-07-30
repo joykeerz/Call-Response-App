@@ -35,7 +35,7 @@ class ProfileController extends Controller
         $user = new User;
         $user->name = $request->tbNewName;
         $user->email = $request->tbNewEmail;
-        $user->password = Hash::make($request->tbNewName);
+        $user->password = Hash::make($request->tbNewPassword);
         $user->level = $request->cbNewRole;
         $user->save();
         return redirect()->route('userProfile')->with('message', 'user created successfuly');

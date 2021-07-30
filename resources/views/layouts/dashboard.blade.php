@@ -75,7 +75,7 @@
           <img src="{{asset('template/dist/img/160x160.png')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+          <h5 class="d-block text-muted">{{ Auth::user()->name }}</h5>
         </div>
       </div>
 

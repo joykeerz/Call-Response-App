@@ -69,6 +69,7 @@ class DatabaseSeeder extends Seeder
             'client_pic_hp' => '0211231231',
             'client_site_location_name' => 'dummy site loc.',
             'client_site_location_address' => 'dummy address',
+            'customer_service_engineer_id' => 1,
             'client_activation_date' => now(),
         ]);
         DB::table('product_details')->insert([

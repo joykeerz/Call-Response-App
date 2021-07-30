@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\CustomerServiceEngineer;
 use App\ProductDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,9 +17,15 @@ class ClientController extends Controller
 
     public function index()
     {
-        $clients = Client::all();
+        // $clients = Client::all();
         $products = ProductDetail::all();
-        return view('Client.index', ['cl' => $clients, 'products' => $products]);
+        $cse = CustomerServiceEngineer::all();
+        $clients = DB::table('clients')
+            ->join('product_details', 'clients.product_detail_id', '=', 'product_details.id')
+            ->join('customer_service_engineers', 'clients.customer_service_engineer_id', '=', 'customer_service_engineers.id')
+            ->select('product_details.*', 'clients.*', 'customer_service_engineers.*')
+            ->get();
+        return view('Client.index', ['cl' => $clients, 'products' => $products, 'cse' => $cse]);
     }
 
     public function store(Request $request)
@@ -33,6 +40,7 @@ class ClientController extends Controller
         $client->client_site_location_name = $request->tb_site_location;
         $client->client_site_location_address = $request->tb_site_address;
         $client->client_activation_date = $request->dt_activation_date;
+        $client->customer_service_engineer_id = $request->cb_cse;
         $client->save();
         return redirect()->route('cl.index')->with('message', 'data successfuly added');
     }
@@ -41,7 +49,8 @@ class ClientController extends Controller
     {
         $data = DB::table('clients')
             ->join('product_details', 'clients.product_detail_id', '=', 'product_details.id')
-            ->select('product_details.*', 'clients.*')
+            ->join('customer_service_engineers', 'clients.customer_service_engineer_id', '=', 'customer_service_engineers.id')
+            ->select('product_details.*', 'clients.*', 'customer_service_engineers.*')
             ->where('clients.id', '=', $id)
             ->first();
         return response()->json($data);

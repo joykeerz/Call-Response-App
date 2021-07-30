@@ -12,7 +12,7 @@ Yaksa Harmoni Global | Profile
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
           <li class="breadcrumb-item active">Profile</li>
         </ol>
       </div>
@@ -90,13 +90,13 @@ Yaksa Harmoni Global | Profile
                           <div class="form-group row">
                             <label for="tbname" class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
-                              <input type="text" class="form-control" id="tbname" name="tbname" placeholder="Name">
+                              <input type="text" class="form-control" id="tbname" name="tbname" placeholder="Name" value="{{Auth::user()->name}}">
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="tbemail" class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
-                              <input type="email" class="form-control" id="tbemail" name="tbemail" placeholder="Email">
+                              <input type="email" class="form-control" id="tbemail" name="tbemail" placeholder="Email" value="{{Auth::user()->email}}">
                             </div>
                           </div>
                           <div class="form-group row">

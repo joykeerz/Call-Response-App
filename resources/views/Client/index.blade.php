@@ -10,7 +10,7 @@ Yaksa Harmoni Global | Data Client/Customer
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
           <li class="breadcrumb-item active">Client/Customer</li>
         </ol>
       </div>
@@ -68,7 +68,7 @@ Yaksa Harmoni Global | Data Client/Customer
                     <div class="col-md-6">
                         <label>Status</label>
                         <select name="cb_machine_status" id="cb_machine_status" class="form-control select2">
-                            <option value="new">new machine</option>
+                            <option value="new">new installation</option>
                             <option value="transfered">transfered machine</option>
                         </select>
                     </div>
@@ -85,10 +85,20 @@ Yaksa Harmoni Global | Data Client/Customer
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Status</label>
+                    <label>Product</label>
                         <select name="cb_product" id="cb_product" class="form-control select2">
                             @forelse ($products as $product)
                                 <option value="{{$product->id}}">{{$product->product_name}} | {{$product->brand_name}} | {{$product->type_series}}</option>
+                            @empty
+                                <option>No Data</option>
+                            @endforelse
+                        </select>
+                </div>
+                <div class="form-group">
+                    <label>Product</label>
+                        <select name="cb_cse" id="cb_cse" class="form-control select2">
+                            @forelse ($cse as $cse)
+                                <option value="{{$cse->id}}">{{$cse->nama_cse}}</option>
                             @empty
                                 <option>No Data</option>
                             @endforelse
@@ -132,6 +142,7 @@ Yaksa Harmoni Global | Data Client/Customer
               <th>Customer Name</th>
               <th>Machine ID</th>
               <th>Machine Status</th>
+              <th>CSE</th>
               <th>Product</th>
               <th>PIC Name</th>
               <th>PIC No.HP</th>
@@ -148,7 +159,8 @@ Yaksa Harmoni Global | Data Client/Customer
                         <td>{{$cl->client_customer_name}}</td>
                         <td>{{$cl->client_machine_id}}</td>
                         <td>{{$cl->client_machine_status}}</td>
-                        <td>{{$cl->product_detail_id}}</td>
+                        <td>{{$cl->nama_cse}}</td>
+                        <td>{{$cl->product_name}}</td>
                         <td>{{$cl->client_pic_name}}</td>
                         <td>{{$cl->client_pic_hp}}</td>
                         <td>{{$cl->client_site_location_name}}</td>
@@ -171,6 +183,7 @@ Yaksa Harmoni Global | Data Client/Customer
               <th>Customer Name</th>
               <th>Machine ID</th>
               <th>Machine Status</th>
+              <th>CSE</th>
               <th>Product</th>
               <th>PIC Name</th>
               <th>PIC No.HP</th>
