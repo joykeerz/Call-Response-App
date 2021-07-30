@@ -259,19 +259,6 @@ Yaksa Harmoni Global | Data Client/Customer
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
-                            <label>CS Engineer (belum Bisa Digunakan</label>
-                            <label id="lblCurrentProduct"></label>
-                            <select name="cbCse" id="cbCse" class="form-control select2">
-                                @forelse ($cse as $cse)
-                                    <option value="{{$cse->id}}">{{$cse->nama_cse}}</option>
-                                @empty
-                                    <option>No Data</option>
-                                @endforelse
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-12">
                             <label for="tbSiteLocation" class="form-label">Site Location</label>
                             <input type="text" id="tbSiteLocation" name="tbSiteLocation" class="form-control">
                         </div>
