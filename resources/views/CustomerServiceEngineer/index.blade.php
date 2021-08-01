@@ -108,6 +108,7 @@ Yaksa Harmoni Global | Customer Service Engineer
               <th>#</th>
               <th>CSE Name</th>
               <th>CSE Initial</th>
+              <th>Service Partner</th>
               <th>Area</th>
               <th>No. HP</th>
               <th>Detail Info</th>
@@ -119,6 +120,7 @@ Yaksa Harmoni Global | Customer Service Engineer
                         <td>{{$loop->iteration}}</td>
                         <td>{{$cse->nama_cse}}</td>
                         <td>{{$cse->initial_cse}}</td>
+                        <td>{{$cse->sp_company_name}}</td>
                         <td>{{$cse->area_cse}}</td>
                         <td>{{$cse->hp_cse}}</td>
                         <td>
@@ -137,6 +139,7 @@ Yaksa Harmoni Global | Customer Service Engineer
                 <th>#</th>
                 <th>CSE Name</th>
                 <th>CSE Initial</th>
+                <th>Service Partner</th>
                 <th>Area</th>
                 <th>No. HP</th>
                 <th>Detail Info</th>
@@ -189,7 +192,6 @@ Yaksa Harmoni Global | Customer Service Engineer
                     <div class="form-group row">
                         <div class="col-12">
                             <label>Service Partner</label><br>
-                            <label id="lblCurrent"></label>
                             <select class="form-control select2" style="width: 100%;" name="cbSp" id="cbSp">
                                 @forelse ($sps as $sp)
                                 <option value="{{$sp->id}}">{{$sp->sp_company_name}}</option>
@@ -263,12 +265,13 @@ function edit(id){
             $('#tbCseInitial').val(response['initial_cse']);
             $('#tbCseArea').val(response['area_cse']);
             $('#tbCseHp').val(response['hp_cse']);
-            $('#lblCurrent').html('Current : '+response['sp_company_name']);
+            $('#cbSp').append(`<option selected value="${response['sp_id']}">current : ${response['sp_company_name']}</option>`);
             $('#update-modal').modal('show');
         }
     });
 }
 function closeModal(){
+    $("#cbSp option:contains('current : ')").remove();
     $('#update-modal').modal('hide');
 }
 </script>

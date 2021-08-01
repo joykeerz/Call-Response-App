@@ -68,8 +68,8 @@ Yaksa Harmoni Global | Data Client/Customer
                     <div class="col-md-6">
                         <label>Status</label>
                         <select name="cb_machine_status" id="cb_machine_status" class="form-control select2">
-                            <option value="new">new installation</option>
-                            <option value="transfered">transfered machine</option>
+                            <option value="new installation">new installation</option>
+                            <option value="transfered machine">transfered machine</option>
                         </select>
                     </div>
                 </div>
@@ -89,16 +89,6 @@ Yaksa Harmoni Global | Data Client/Customer
                         <select name="cb_product" id="cb_product" class="form-control select2">
                             @forelse ($products as $product)
                                 <option value="{{$product->id}}">{{$product->product_name}} | {{$product->brand_name}} | {{$product->type_series}}</option>
-                            @empty
-                                <option>No Data</option>
-                            @endforelse
-                        </select>
-                </div>
-                <div class="form-group">
-                    <label>CS Engineer</label>
-                        <select name="cb_cse" id="cb_cse" class="form-control select2">
-                            @forelse ($cse as $cse)
-                                <option value="{{$cse->id}}">{{$cse->nama_cse}}</option>
                             @empty
                                 <option>No Data</option>
                             @endforelse
@@ -226,10 +216,9 @@ Yaksa Harmoni Global | Data Client/Customer
                         </div>
                         <div class="col-md-6">
                             <label>Status</label>
-                            <label id="lblCurrentStatus"></label>
                             <select name="cbMachineStatus" id="cbMachineStatus" class="form-control select2">
-                                <option value="new">new machine</option>
-                                <option value="transfered">transfered machine</option>
+                                <option value="new installation">new installation</option>
+                                <option value="transfered machine">transfered machine</option>
                             </select>
                         </div>
                     </div>
@@ -247,10 +236,21 @@ Yaksa Harmoni Global | Data Client/Customer
                     <div class="form-group row">
                         <div class="col-12">
                             <label>Product</label>
-                            <label id="lblCurrentProduct"></label>
                             <select name="cbProduct" id="cbProduct" class="form-control select2">
                                 @forelse ($products as $product)
                                     <option value="{{$product->id}}">{{$product->product_name}} | {{$product->brand_name}} | {{$product->type_series}}</option>
+                                @empty
+                                    <option>No Data</option>
+                                @endforelse
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label>CS Engineer</label>
+                            <select name="cbCse" id="cbCse" class="form-control select2">
+                                @forelse ($cse as $cs)
+                                    <option value="{{$cs->id}}">{{$cs->nama_cse}}</option>
                                 @empty
                                     <option>No Data</option>
                                 @endforelse
@@ -322,6 +322,10 @@ Yaksa Harmoni Global | Data Client/Customer
   });
 </script>
 <script>
+    // var productId = '';
+    // var cseId = '';
+    // var machineStatus = '';
+
     $('.select2').select2({
         theme: 'bootstrap4'
     })
@@ -333,10 +337,15 @@ function edit(id){
         method: 'get',
         success: function(response) {
             $('#form-update').prop('action', link);
-            $('#lblCurrentProduct').html(' | current : '+response['product_name']);
+            // machineStatus = response['client_machine_status'];
+            // cseId = response['customer_service_engineer_id'];
+            // productId = response['product_detail_id'];
+
+            $('#cbProduct').append(`<option selected value="${response['product_detail_id']}">current : ${response['product_name']}</option>`);
+            $('#cbCse').append(`<option selected value="${response['customer_service_engineer_id']}">current : ${response['nama_cse']}</option>`);
             $('#tbCustomerName').val(response['client_customer_name']);
             $('#tbMachineId').val(response['client_machine_id']);
-            $('#lblCurrentStatus').html(' | current : '+response['client_machine_status']);
+            $('#cbMachineStatus').append(`<option selected value="${response['client_machine_status']}">current : ${response['client_machine_status']}</option>`);
             $('#tbPicName').val(response['client_pic_name']);
             $('#tbPicHp').val(response['client_pic_hp']);
             $('#tbSiteLocation').val(response['client_site_location_name']);
@@ -347,7 +356,11 @@ function edit(id){
     });
 }
 function closeModal(){
+    $("#cbProduct option:contains('current : ')").remove();
+    $("#cbCse option:contains('current : ')").remove();
+    $("#cbMachineStatus option:contains('current : ')").remove();
     $('#update-modal').modal('hide');
+    // $("#cbProduct option[value = productId]").remove();
 }
 </script>
 @endsection

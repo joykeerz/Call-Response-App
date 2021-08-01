@@ -211,7 +211,6 @@ Yaksa Harmoni Global | Data Sparepart
                     <div class="form-group row">
                         <div class="col-12">
                             <label for="cbCondition" class="form-label">Condition</label><br>
-                            <label id="lblCurrentCondition"></label>
                             <select class="form-control" name="cbCondition" id="cbCondition">
                                 <option>New</option>
                                 <option>Used</option>
@@ -227,7 +226,6 @@ Yaksa Harmoni Global | Data Sparepart
                     <div class="form-group row">
                         <div class="col-12">
                             <label>Product</label><br>
-                            <label id="lblCurrentProduct"></label>
                             <select class="form-control select2" style="width: 100%;" name="cbProduct" id="cbProduct">
                                 @forelse ($products as $product)
                                 <option value="{{$product->id}}">{{$product->product_name}} | {{$product->brand_name}} | {{$product->type_series}}</option>
@@ -314,7 +312,7 @@ function edit(id){
             $('#tbPartName').val(response['part_name']);
             $('#tbPartQty').val(response['part_qty']);
             $('#lblCurrentCondition').html('Current : '+response['part_condition']);
-            $('#lblCurrentProduct').html('Current : '+response['product_name']);
+            $('#cbProduct').append(`<option selected value="${response['product_detail_id']}">current : ${response['product_name']}</option>`);
             $('#tbDateEntry').val(response['part_date_of_entry']);
             $('#tbDateOut').val(response['part_out_date']);
             $('#update-modal').modal('show');

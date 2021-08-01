@@ -68,6 +68,8 @@ class ClientController extends Controller
         $client->client_site_location_name = $request->tbSiteLocation;
         $client->client_site_location_address = $request->tbSiteAddress;
         $client->client_activation_date = $request->dtActivationDate;
+        $client->customer_service_engineer_id = $request->cbCse;
+        $client->product_detail_id = $request->cbProduct;
         $client->save();
         return redirect()->route('cl.index')->with('message', 'data successfuly added');
     }

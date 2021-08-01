@@ -17,7 +17,10 @@ class CustomerServiceEngineerController extends Controller
 
     public function index()
     {
-        $cse = CustomerServiceEngineer::all();
+        $cse = DB::table('customer_service_engineers')
+            ->join('sps', 'customer_service_engineers.sp_id', '=', 'sps.id')
+            ->select('customer_service_engineers.*', 'sps.*')
+            ->get();
         $sp = Sp::all();
         return view('CustomerServiceEngineer.index', ['cse' => $cse, 'sps' => $sp]);
         # code...

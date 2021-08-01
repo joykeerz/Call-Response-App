@@ -291,13 +291,14 @@ Yaksa Harmoni Global | Profile
                 $('#form-update').prop('action', link);
                 $('#tbEditName').val(response['name']);
                 $('#tbEditEmail').val(response['email']);
-                $('#lblRole').html("Current : "+response['level']);
+                $('#cbEditRole').append(`<option selected value="${response['level']}">current : ${response['level']}</option>`);
                 $('#update-modal').modal('show');
             }
         });
     }
 
     function closeModalEdit(){
+        $("#cbEditRole option:contains('current : ')").remove();
         $('#update-modal').modal('hide');
     }
     function closeModalInsert(){
