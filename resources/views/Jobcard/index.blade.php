@@ -127,7 +127,7 @@ Yaksa Harmoni Global | New Jobcard
                         <label for="tb_date_time">Date & Time</label>
                         <input class="form-control" type="datetime-local" name="tb_date_time" id="tb_date_time">
                     </div>
-                    <a name="" id="" class="btn btn-outline-danger" href="#" role="button">Cancel</a>
+                    <a name="" id="" class="btn btn-outline-danger" href="{{ route('home') }}" role="button">Cancel</a>
                     <button type="submit" class="btn btn-primary">Next</button>
                 </div>
             </div>

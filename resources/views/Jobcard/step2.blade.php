@@ -44,7 +44,7 @@ Yaksa Harmoni Global | New Jobcard
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">Ticket Number</label>
-                        <h5 class="form-control w-25">{{\Carbon\Carbon::now()->format('Ymd')}}{{$jobcardId}}</h5>
+                        <h5 class="form-control w-50">{{\Carbon\Carbon::now()->format('Ymd')}}{{$jobcardId}}</h5>
                         <input type="hidden" name="tb_ticket_number" value="{{\Carbon\Carbon::now()->format('Ymd')}}{{$jobcardId}}">
                         <input type="hidden" name="tb_id" value="{{$jobcardId}}">
                         <small id="tb_ticket_number_help" class="form-text text-muted">Ticket number auto generated and can't be changed</small>
@@ -189,7 +189,14 @@ Yaksa Harmoni Global | New Jobcard
 
                     <div class="form-group">
                         <label for="tb_cse_name">CSE Name</label>
-                        <input type="text" class="form-control" id="tb_cse_name" name="tb_cse_name">
+                        {{-- <input type="text" class="form-control" id="tb_cse_name" name="tb_cse_name"> --}}
+                        <select name="tb_cse_name" id="tb_cse_name">
+                            @forelse ($cseData as $cse)
+                                <option value="$cse->nama_cse">{{$cse->nama_cse}}</option>
+                            @empty
+                                <option>no data</option>
+                            @endforelse
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -201,7 +208,7 @@ Yaksa Harmoni Global | New Jobcard
                         </div>
                     </div>
 
-                    <a name="" id="" class="btn btn-outline-danger" href="#" role="button">Cancel</a>
+                    <a class="btn btn-outline-danger" href="{{ route('jobcard.cancelTicket', ['id'=>$jobcardId]) }}" role="button">Cancel</a>
                     <button type="submit" class="btn btn-primary">Next</button>
                 </div>
             </div>

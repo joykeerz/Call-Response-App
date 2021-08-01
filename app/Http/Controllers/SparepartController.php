@@ -21,7 +21,7 @@ class SparepartController extends Controller
         $products = ProductDetail::all();
         $spareparts = DB::table('spareparts')
             ->join('product_details', 'spareparts.product_detail_id', '=', 'product_details.id')
-            ->select('spareparts.*', 'product_details.*')
+            ->select('spareparts.*', 'product_details.*', 'spareparts.id AS spid', 'product_details.id AS pdid')
             ->get();
         return view('Sparepart.index', ['spareparts' => $spareparts, 'products' => $products]);
     }
@@ -48,6 +48,7 @@ class SparepartController extends Controller
             ->select('spareparts.*', 'product_details.*')
             ->where('spareparts.id', '=', $id)
             ->first();
+
         return response()->json($data);
     }
 

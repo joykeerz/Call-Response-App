@@ -67,27 +67,73 @@ Yaksa Harmoni Global | Data Business Partner
                       <small style="color: red">this field is required</small>
                   @enderror
                 </div>
-                <div class="form-group">
-                  <label>PIC Name</label>
-                  <input type="text" name="tb_pic_name" class="form-control">
-                  @error('tb_pic_name')
-                      <small style="color: red">this field is required</small>
-                  @enderror
-                </div>
-                <div class="form-group">
-                  <label>Contact Number</label>
-                  <input type="text" name="tb_contact_number" class="form-control">
-                  @error('tb_contact_number')
-                      <small style="color: red">this field is required</small>
-                  @enderror
-                </div>
-                <div class="form-group">
-                  <label>Email</label>
-                  <input type="text" name="tb_email" class="form-control">
-                  @error('tb_email')
-                      <small style="color: red">this field is required</small>
-                  @enderror
-                </div>
+                {{-- <div id="picTable" class="form-group">
+                    <div class="row">
+                        <div class="form-group col-md-4 col-4">
+                          <label>PIC Name</label>
+                          <input type="text" name="tb_pic_name[]" class="form-control">
+                          @error('tb_pic_name')
+                              <small style="color: red">this field is required</small>
+                          @enderror
+                        </div>
+                        <div class="form-group col-md-4 col-4">
+                          <label>Contact Number</label>
+                          <input type="text" name="tb_contact_number[]" class="form-control">
+                          @error('tb_contact_number')
+                              <small style="color: red">this field is required</small>
+                          @enderror
+                        </div>
+                        <div class="form-group col-md-4 col-4">
+                          <label>Email</label>
+                          <input type="text" name="tb_email[]" class="form-control">
+                          @error('tb_email')
+                              <small style="color: red">this field is required</small>
+                          @enderror
+                        </div>
+                    </div>
+                </div> --}}
+                <table class="table">
+                    <thead>
+                        <th>PIC Name</th>
+                        <th>Contact Number</th>
+                        <th>Email</th>
+                        <th>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-outline-primary" id="addRow">
+                                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </th>
+                    </thead>
+                    <tbody id="picTable">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <input type="text" name="tb_pic_name[]" class="form-control">
+                                    @error('tb_pic_name')
+                                        <small style="color: red">this field is required</small>
+                                    @enderror
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input type="text" name="tb_contact_number[]" class="form-control">
+                                    @error('tb_contact_number')
+                                        <small style="color: red">this field is required</small>
+                                    @enderror
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input type="text" name="tb_email[]" class="form-control">
+                                    @error('tb_email')
+                                        <small style="color: red">this field is required</small>
+                                    @enderror
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 <div class="form-group">
                   <label>Bank Name / Project</label>
                   <input type="text" name="tb_bank_name" class="form-control">
@@ -281,8 +327,46 @@ function edit(id){
         }
     });
 }
+
 function closeModal(){
     $('#update-modal').modal('hide');
 }
+
+$('#addRow').click(function (e) {
+    e.preventDefault();
+    const row = `<tr>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" name="tb_pic_name[]" class="form-control">
+                            @error('tb_pic_name')
+                                <small style="color: red">this field is required</small>
+                            @enderror
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" name="tb_contact_number[]" class="form-control">
+                            @error('tb_contact_number')
+                                <small style="color: red">this field is required</small>
+                            @enderror
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" name="tb_email[]" class="form-control">
+                            @error('tb_email')
+                                <small style="color: red">this field is required</small>
+                            @enderror
+                        </div>
+                    </td>
+                    <td>
+                        <a href="javascript:void(0)" class="btn btn-sm btn-danger" id="deleteRow">Remove</a>
+                    </td>
+                </tr>`;
+    $('#picTable').append(row);
+});
+$('tbody').on('click', '#deleteRow', function () {
+    $(this).parent().parent().remove();
+})
 </script>
 @endsection

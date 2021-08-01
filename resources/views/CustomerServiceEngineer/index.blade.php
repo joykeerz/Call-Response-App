@@ -73,6 +73,10 @@ Yaksa Harmoni Global | Customer Service Engineer
                   <input type="text" name="tb_cse_hp" class="form-control">
                 </div>
                 <div class="form-group">
+                  <label>CSE Leader</label>
+                  <input type="text" name="tb_cse_leader" class="form-control">
+                </div>
+                <div class="form-group">
                     <label>Service Partner</label>
                     <select class="form-control select2" style="width: 100%;" name="cb_sp" id="cb_sp">
                         @forelse ($sps as $sp)
@@ -111,21 +115,23 @@ Yaksa Harmoni Global | Customer Service Engineer
               <th>Service Partner</th>
               <th>Area</th>
               <th>No. HP</th>
+              <th>Leader</th>
               <th>Detail Info</th>
             </tr>
             </thead>
             <tbody>
-                @forelse ($cse as $cse)
+                @forelse ($cse as $cser)
                     <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$cse->nama_cse}}</td>
-                        <td>{{$cse->initial_cse}}</td>
-                        <td>{{$cse->sp_company_name}}</td>
-                        <td>{{$cse->area_cse}}</td>
-                        <td>{{$cse->hp_cse}}</td>
+                        <td>{{$cser->nama_cse}}</td>
+                        <td>{{$cser->initial_cse}}</td>
+                        <td>{{$cser->sp_company_name}}</td>
+                        <td>{{$cser->area_cse}}</td>
+                        <td>{{$cser->hp_cse}}</td>
+                        <td>{{$cser->leader_cse}}</td>
                         <td>
-                            <button onclick="edit('{{$cse->id}}')" class="btn btn-success float-right mr-2"><i class="fa fa-pencil-alt"></i></button>
-                            <a onclick="return  confirm('are you sure?')" class="btn btn-danger float-right mr-2" href="{{route('cse.delete',['id'=>$cse->id])}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            <button onclick="edit('{{$cser->cseid}}')" class="btn btn-success float-right mr-2"><i class="fa fa-pencil-alt"></i></button>
+                            <a onclick="return  confirm('are you sure?')" class="btn btn-danger float-right mr-2" href="{{route('cse.delete',['id'=>$cser->cseid])}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 @empty
@@ -142,6 +148,7 @@ Yaksa Harmoni Global | Customer Service Engineer
                 <th>Service Partner</th>
                 <th>Area</th>
                 <th>No. HP</th>
+                <th>Leader</th>
                 <th>Detail Info</th>
             </tr>
             </tfoot>
@@ -187,6 +194,12 @@ Yaksa Harmoni Global | Customer Service Engineer
                         <div class="col-12">
                             <label for="tbCseHp" class="form-label">No. HP</label>
                             <input type="text" id="tbCseHp" name="tbCseHp" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label for="tbCseLeader" class="form-label">CSE Leader</label>
+                            <input type="text" id="tbCseLeader" name="tbCseLeader" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -265,6 +278,7 @@ function edit(id){
             $('#tbCseInitial').val(response['initial_cse']);
             $('#tbCseArea').val(response['area_cse']);
             $('#tbCseHp').val(response['hp_cse']);
+            $('#tbCseLeader').val(response['leader_cse']);
             $('#cbSp').append(`<option selected value="${response['sp_id']}">current : ${response['sp_company_name']}</option>`);
             $('#update-modal').modal('show');
         }

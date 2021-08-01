@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Bp;
 use App\Client;
+use App\CustomerServiceEngineer;
 use App\Jobcard;
 use App\ProductDetail;
 use App\Sp;
@@ -25,7 +26,7 @@ class JobcardController extends Controller
             'machineData' => $machineData,
             'customerData' => $customerData,
             'spData' => $spData,
-            'bpData' => $bpData
+            'bpData' => $bpData,
         ]);
     }
 
@@ -49,12 +50,15 @@ class JobcardController extends Controller
 
     public function stepTwo($id)
     {
-        return view('Jobcard.step2', ['jobcardId' => $id]);
+        $cseData = CustomerServiceEngineer::all();
+        return view('Jobcard.step2', [
+            'jobcardId' => $id,
+            'cseData' => $cseData
+        ]);
     }
 
     public function stepTwoStore(Request $request)
     {
-
         $jobcard = Jobcard::find($request->tb_id);
         $jobcard->jobcard_number = $request->tb_jobcard_number;
 
@@ -79,8 +83,6 @@ class JobcardController extends Controller
         $jobcard->waiting_time = $request->dt_waiting_time;
         $jobcard->waiting_note = $request->tb_waiting_note;
         $jobcard->status = $request->cb_status;
-
-
 
         $jobcard->remarks = $request->tb_remarks;
         $jobcard->brief_of_work = $request->tb_brief;
@@ -166,5 +168,12 @@ class JobcardController extends Controller
             ->where('clients.id', '=', $id)
             ->first();
         return response()->json($client);
+    }
+
+    public function cancelTicket($id)
+    {
+        $jobcard = Jobcard::find($id);
+        $jobcard->delete();
+        return redirect()->route('home');
     }
 }

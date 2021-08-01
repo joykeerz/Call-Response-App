@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
             'product_detail_id' => 1,
             'client_customer_name' => 'dummy client',
             'client_machine_id' => 1,
-            'client_machine_status' => 'new',
+            'client_machine_status' => 'new installation',
             'client_pic_name' => 'dummy pic name',
             'client_pic_hp' => '0211231231',
             'client_site_location_name' => 'dummy site loc.',
@@ -90,6 +90,7 @@ class DatabaseSeeder extends Seeder
             'initial_cse' => 'none',
             'area_cse' => 'none',
             'hp_cse' => 'none',
+            'leader_cse' => 'none',
         ]);
     }
 }

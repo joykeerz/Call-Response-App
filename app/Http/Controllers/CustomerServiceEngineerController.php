@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class CustomerServiceEngineerController extends Controller
 {
-    //
     public function __construct()
     {
         $this->middleware('auth');
@@ -19,11 +18,10 @@ class CustomerServiceEngineerController extends Controller
     {
         $cse = DB::table('customer_service_engineers')
             ->join('sps', 'customer_service_engineers.sp_id', '=', 'sps.id')
-            ->select('customer_service_engineers.*', 'sps.*')
+            ->select('customer_service_engineers.*', 'sps.*', 'customer_service_engineers.id AS cseid', 'sps.id AS spsid')
             ->get();
         $sp = Sp::all();
         return view('CustomerServiceEngineer.index', ['cse' => $cse, 'sps' => $sp]);
-        # code...
     }
 
     public function store(Request $request)
@@ -33,6 +31,7 @@ class CustomerServiceEngineerController extends Controller
         $cse->initial_cse = $request->tb_cse_initial;
         $cse->area_cse = $request->tb_cse_area;
         $cse->hp_cse = $request->tb_cse_hp;
+        $cse->leader_cse = $request->tb_cse_leader;
         $cse->sp_id = $request->cb_sp;
         $cse->save();
         return redirect()->route('cse.index')->with('message', 'Data successfuly created');
@@ -40,10 +39,9 @@ class CustomerServiceEngineerController extends Controller
 
     public function edit($id)
     {
-        // $data = CustomerServiceEngineer::find($id);
         $data = DB::table('customer_service_engineers')
             ->join('sps', 'customer_service_engineers.sp_id', '=', 'sps.id')
-            ->select('customer_service_engineers.*', 'sps.*')
+            ->select('customer_service_engineers.*', 'sps.*', 'customer_service_engineers.id AS cseid', 'sps.id AS spsid')
             ->where('customer_service_engineers.id', $id)
             ->first();
         return response()->json($data);
@@ -56,6 +54,7 @@ class CustomerServiceEngineerController extends Controller
         $cse->initial_cse = $request->tbCseInitial;
         $cse->area_cse = $request->tbCseArea;
         $cse->hp_cse = $request->tbCseHp;
+        $cse->leader_cse = $request->tbCseLeader;
         $cse->sp_id = $request->cbSp;
         $cse->save();
         return redirect()->route('cse.index')->with('message', 'Data successfuly updated');

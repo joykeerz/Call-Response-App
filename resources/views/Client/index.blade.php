@@ -42,12 +42,12 @@ Yaksa Harmoni Global | Data Client/Customer
 </div>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
         <form action="{{route('cl.store')}}" method="post">
             @csrf
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Form Input Client/Customer</h3>
+                <h3 class="card-title">Form Input New Installation</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -61,16 +61,17 @@ Yaksa Harmoni Global | Data Client/Customer
                   <input type="text" name="tb_customer_name" class="form-control">
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label>Machine ID</label>
                         <input type="text" name="tb_machine_id" class="form-control ">
                     </div>
                     <div class="col-md-6">
-                        <label>Status</label>
-                        <select name="cb_machine_status" id="cb_machine_status" class="form-control select2">
+                        <input type="hidden" name="cb_machine_status" value="new installation">
+                        {{-- <label>Status : New Installation</label> --}}
+                        {{-- <select name="cb_machine_status" id="cb_machine_status" class="form-control select2">
                             <option value="new installation">new installation</option>
                             <option value="transfered machine">transfered machine</option>
-                        </select>
+                        </select> --}}
                     </div>
                 </div>
                 <div class="form-group row">
@@ -88,7 +89,17 @@ Yaksa Harmoni Global | Data Client/Customer
                     <label>Product</label>
                         <select name="cb_product" id="cb_product" class="form-control select2">
                             @forelse ($products as $product)
-                                <option value="{{$product->id}}">{{$product->product_name}} | {{$product->brand_name}} | {{$product->type_series}}</option>
+                                <option value="{{$product->pdid}}">{{$product->product_name}} | {{$product->brand_name}} | {{$product->type_series}}</option>
+                            @empty
+                                <option>No Data</option>
+                            @endforelse
+                        </select>
+                </div>
+                <div class="form-group">
+                    <label>CS Engineer</label>
+                        <select name="cb_cse" id="cb_cse" class="form-control select2">
+                            @forelse ($cse as $cs)
+                                <option value="{{$cs->id}}">{{$cs->nama_cse}}</option>
                             @empty
                                 <option>No Data</option>
                             @endforelse
@@ -105,6 +116,47 @@ Yaksa Harmoni Global | Data Client/Customer
                 <div class="form-group">
                   <label>Activation Date</label>
                   <input type="date" name="dt_activation_date" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </form>
+    </div>
+    <div class="col-md-6">
+        <form action="{{route('cl.moveMachine')}}" method="post">
+            @csrf
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Form Input Transfered Machine</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <label>Select Client / Machine</label>
+                        <select name="cb_client" id="cb_client" class="form-control select2">
+                            @forelse ($clients as $client)
+                                <option value="{{$client->cid}}">Client: {{$client->client_customer_name}} | Machine ID: {{$client->client_machine_id}}</option>
+                            @empty
+                                <option>No data</option>
+                            @endforelse
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                  <label>New Site Location</label>
+                  <input type="text" name="tb_move_site_location" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>New Site Address</label>
+                  <input type="text" name="tb_move_site_address" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div>
@@ -143,7 +195,7 @@ Yaksa Harmoni Global | Data Client/Customer
             </tr>
             </thead>
             <tbody>
-                @forelse ($cl as $cl)
+                @forelse ($clients as $cl)
                     <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$cl->client_customer_name}}</td>

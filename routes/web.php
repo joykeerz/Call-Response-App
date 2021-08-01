@@ -49,6 +49,7 @@ Route::middleware(['auth', 'UserAdmin'])->group(function () {
 
         Route::get('/detail/{id}', 'JobcardController@jobcardDetail')->name('jobcard.jobcardDetail');
         Route::get('/detail/{id}/close', 'JobcardController@closeTicket')->name('jobcard.closeTicket');
+        Route::get('/detail/{id}/cancel', 'JobcardController@cancelTicket')->name('jobcard.cancelTicket');
 
         Route::post('/countWaitingTime', 'JobcardController@countWaitingTime');
         Route::get('/getClientDataAjax/{id}', 'JobcardController@getClientDataAjax')->name('jobcard.getClientDataAjax');
@@ -94,6 +95,7 @@ Route::middleware(['auth', 'UserAdmin'])->group(function () {
     Route::prefix('client')->group(function () {
         Route::get('/', 'ClientController@index')->name('cl.index');
         Route::post('/store', 'ClientController@store')->name('cl.store');
+        Route::post('/move', 'ClientController@moveMachine')->name('cl.moveMachine');
         Route::get('/edit/{id}', 'ClientController@edit')->name('cl.edit');
         Route::post('/update/{id}', 'ClientController@update')->name('cl.update');
         Route::get('/delete/{id}', 'ClientController@delete')->name('cl.delete');

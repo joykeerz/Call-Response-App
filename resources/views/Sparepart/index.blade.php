@@ -145,8 +145,8 @@ Yaksa Harmoni Global | Data Sparepart
                         <td>{{$sparepart->part_date_of_entry}}</td>
                         <td>{{$sparepart->part_out_date}}</td>
                         <td>
-                            <button onclick="edit('{{$sparepart->id}}')" class="btn btn-success float-right mr-2"><i class="fa fa-pencil-alt"></i></button>
-                            <a onclick="return confirm('are you sure?')" class="btn btn-danger float-right mr-2" href="{{route('spp.delete',['id'=>$sparepart->id])}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            <button onclick="edit('{{$sparepart->spid}}')" class="btn btn-success float-right mr-2"><i class="fa fa-pencil-alt"></i></button>
+                            <a onclick="return confirm('are you sure?')" class="btn btn-danger float-right mr-2" href="{{route('spp.delete',['id'=>$sparepart->spid])}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 @empty
@@ -311,7 +311,7 @@ function edit(id){
             $('#tbSerialNumber').val(response['part_serial']);
             $('#tbPartName').val(response['part_name']);
             $('#tbPartQty').val(response['part_qty']);
-            $('#lblCurrentCondition').html('Current : '+response['part_condition']);
+            $('#cbCondition').append(`<option selected value="${response['part_condition']}">current : ${response['part_condition']}</option>`);
             $('#cbProduct').append(`<option selected value="${response['product_detail_id']}">current : ${response['product_name']}</option>`);
             $('#tbDateEntry').val(response['part_date_of_entry']);
             $('#tbDateOut').val(response['part_out_date']);
@@ -320,6 +320,8 @@ function edit(id){
     });
 }
 function closeModal(){
+    $("#cbCondition option:contains('current : ')").remove();
+    $("#cbProduct option:contains('current : ')").remove();
     $('#update-modal').modal('hide');
 }
 </script>
