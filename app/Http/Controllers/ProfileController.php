@@ -6,6 +6,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+use function PHPUnit\Framework\isEmpty;
+
 class ProfileController extends Controller
 {
     //
@@ -25,7 +27,9 @@ class ProfileController extends Controller
         $user = User::find($id);
         $user->name = $request->tbname;
         $user->email = $request->tbemail;
-        $user->password = Hash::make($request->tbpassword);
+        if (!isEmpty($user->password)) {
+            $user->password = Hash::make($request->tbpassword);
+        }
         $user->save();
         return redirect()->route('userProfile')->with('message', 'profile updated successfuly');
     }
@@ -52,7 +56,7 @@ class ProfileController extends Controller
         $user = User::find($id);
         $user->name = $request->tbEditName;
         $user->email = $request->tbEditEmail;
-        if ($request->tbEditPassword) {
+        if (!isEmpty($request->tbEditPassword)) {
             $user->password = Hash::make($request->tbEditPassword);
         }
         $user->level = $request->cbEditRole;
