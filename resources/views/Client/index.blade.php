@@ -143,7 +143,9 @@ Yaksa Harmoni Global | Data Client/Customer
                         <label>Select Client / Machine</label>
                         <select name="cb_client" id="cb_client" class="form-control select2">
                             @forelse ($clients as $client)
-                                <option value="{{$client->cid}}">Client: {{$client->client_customer_name}} | Machine ID: {{$client->client_machine_id}}</option>
+                                @if ($client->client_machine_status != 'moved')
+                                    <option value="{{$client->cid}}">Client: {{$client->client_customer_name}} | Machine ID: {{$client->client_machine_id}}</option>
+                                @endif
                             @empty
                                 <option>No data</option>
                             @endforelse

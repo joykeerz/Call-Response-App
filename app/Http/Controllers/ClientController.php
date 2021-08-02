@@ -83,11 +83,21 @@ class ClientController extends Controller
 
     public function moveMachine(Request $request)
     {
-        $client = Client::find($request->cb_client);
-        $client->client_machine_status = 'moved';
-        $client->client_site_location_name = $request->tb_move_site_location;
-        $client->client_site_location_address = $request->tb_move_site_address;
-        $client->save();
+        $oldClient = Client::find($request->cb_client);
+        $moveClient = new Client;
+        $moveClient->product_detail_id = $oldClient->product_detail_id;
+        $moveClient->client_customer_name = $oldClient->client_customer_name;
+        $moveClient->client_machine_id = $oldClient->client_machine_id;
+        $moveClient->client_pic_name = $oldClient->client_pic_name;
+        $moveClient->client_pic_hp = $oldClient->client_pic_hp;
+        $moveClient->client_activation_date = $oldClient->client_activation_date;
+        $moveClient->customer_service_engineer_id = $oldClient->customer_service_engineer_id;
+        $moveClient->product_detail_id = $oldClient->product_detail_id;
+
+        $moveClient->client_machine_status = 'moved';
+        $moveClient->client_site_location_name = $request->tb_move_site_location;
+        $moveClient->client_site_location_address = $request->tb_move_site_address;
+        $moveClient->save();
         return redirect()->route('cl.index')->with('message', 'changed to moved successfuly');
     }
 }
