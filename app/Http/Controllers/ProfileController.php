@@ -27,7 +27,7 @@ class ProfileController extends Controller
         $user = User::find($id);
         $user->name = $request->tbname;
         $user->email = $request->tbemail;
-        if (!isEmpty($user->password)) {
+        if (!empty($user->password)) {
             $user->password = Hash::make($request->tbpassword);
         }
         $user->save();
@@ -56,7 +56,7 @@ class ProfileController extends Controller
         $user = User::find($id);
         $user->name = $request->tbEditName;
         $user->email = $request->tbEditEmail;
-        if (!isEmpty($request->tbEditPassword)) {
+        if (!empty($request->tbEditPassword)) {
             $user->password = Hash::make($request->tbEditPassword);
         }
         $user->level = $request->cbEditRole;
