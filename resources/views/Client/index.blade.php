@@ -270,8 +270,8 @@ Yaksa Harmoni Global | Data Client/Customer
                         <td>{{$cl->client_site_location_address}}</td>
                         <td>{{$cl->client_activation_date}}</td>
                         <td>
-                            <button onclick="edit('{{$cl->id}}')" class="btn btn-success float-right mr-2"><i class="fa fa-pencil-alt"></i></button>
-                            <a onclick="return  confirm('are you sure?')" class="btn btn-danger float-right mr-2" href="{{route('cl.delete',['id'=>$cl->id])}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            <button onclick="edit('{{$cl->cid}}')" class="btn btn-success float-right mr-2"><i class="fa fa-pencil-alt"></i></button>
+                            <a onclick="return  confirm('are you sure?')" class="btn btn-danger float-right mr-2" href="{{route('cl.delete',['id'=>$cl->cid])}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 @empty
@@ -330,8 +330,14 @@ Yaksa Harmoni Global | Data Client/Customer
                         <div class="col-md-6">
                             <label>Status</label>
                             <select name="cbMachineStatus" id="cbMachineStatus" class="form-control select2">
-                                <option value="new installation">new installation</option>
-                                <option value="transfered machine">transfered machine</option>
+                                <option value="New Installation">New Installation</option>
+                                <option value="No Contract">No Contract</option>
+                                <option value="Rental">Rental</option>
+                                <option value="Maintenance & Part">Maintenance & Part</option>
+                                <option value="Maintenance Only">Maintenance Only</option>
+                                <option value="Part Only">Part Only</option>
+                                <option value="OnCall">OnCall</option>
+                                <option value="Warranty">Warranty</option>
                             </select>
                         </div>
                     </div>
@@ -499,8 +505,8 @@ Yaksa Harmoni Global | Data Client/Customer
                 $('#tbSiteLocation').val(response['client_site_location_name']);
                 $('#tbSiteAddress').val(response['client_site_location_address']);
                 $('#dtActivationDate').val(response['client_activation_date']);
-                $('#cbWarranty').val(response['client_warranty_year']);
-                $('#cbOperationalHours').val(response['client_operation_hours']);
+                $('#cbWarranty').append(`<option selected value="${response['client_warranty_year']}">current : ${response['client_warranty_year']}</option>`);
+                $('#cbOperationalHours').append(`<option selected value="${response['client_operation_hours']}">current : ${response['client_operation_hours']}</option>`);
                 $('#update-modal').modal('show');
             }
         });
@@ -510,6 +516,8 @@ Yaksa Harmoni Global | Data Client/Customer
         $("#cbProduct option:contains('current : ')").remove();
         $("#cbCse option:contains('current : ')").remove();
         $("#cbMachineStatus option:contains('current : ')").remove();
+        $("#cbWarranty option:contains('current : ')").remove();
+        $("#cbOperationalHours option:contains('current : ')").remove();
         $('#update-modal').modal('hide');
         // $("#cbProduct option[value = productId]").remove();
     }

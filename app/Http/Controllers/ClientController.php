@@ -34,7 +34,7 @@ class ClientController extends Controller
         $client->product_detail_id = $request->cb_product;
         $client->client_customer_name = $request->tb_customer_name;
         $client->client_machine_id = $request->tb_machine_id;
-        $client->client_machine_status = 'new installation';
+        $client->client_machine_status = $request->cb_machine_status;
         $client->client_pic_name = $request->tb_pic_name;
         $client->client_pic_hp = $request->tb_pic_hp;
         $client->client_site_location_name = $request->tb_site_location;
