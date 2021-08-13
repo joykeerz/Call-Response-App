@@ -99,6 +99,7 @@ Route::middleware(['auth', 'UserAdmin'])->group(function () {
         Route::get('/edit/{id}', 'ClientController@edit')->name('cl.edit');
         Route::post('/update/{id}', 'ClientController@update')->name('cl.update');
         Route::get('/delete/{id}', 'ClientController@delete')->name('cl.delete');
+        Route::get('/relocate/{id}', 'ClientController@showRelocateClient')->name('cl.relocate');
     });
 
     ///Customer Service Engineer

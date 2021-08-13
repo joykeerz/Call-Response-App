@@ -164,7 +164,7 @@ class JobcardController extends Controller
     {
         $client = DB::table('clients')
             ->join('product_details', 'clients.product_detail_id', '=', 'product_details.id')
-            ->select('product_details.*', 'clients.*')
+            ->select('product_details.*', 'clients.*', 'clients.id AS cid', 'product_details.id AS pdid')
             ->where('clients.id', '=', $id)
             ->first();
         return response()->json($client);

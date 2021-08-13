@@ -42,13 +42,13 @@ Yaksa Harmoni Global | Data Client/Customer
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <form action="{{route('cl.store')}}" method="post">
             @csrf
+
             <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">Form Input New Installation</h3>
-
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -56,22 +56,51 @@ Yaksa Harmoni Global | Data Client/Customer
                 </div>
               </div>
               <div class="card-body">
+
+                <div class="card border-primary shadow">
+                    <div class="card-header">
+                        Relocate
+                    </div>
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="">Select to relocate</label>
+                        <select name="cb_move_client" id="cb_move_client" class="form-control select2">
+                            @forelse ($clients as $client)
+                                @if ($client->client_machine_status != 'moved')
+                                    <option value="{{$client->cid}}">Client: {{$client->client_customer_name}} | Machine ID: {{$client->client_machine_id}}</option>
+                                @endif
+                            @empty
+                                <option>No data</option>
+                            @endforelse
+                        </select>
+                        <small id="helpId" class="text-muted">type to search</small><br>
+                        <a href="#" id="relocateButton" class="btn btn-outline-primary mt-2">Relocate</a>
+                    </div>
+                  </div>
+                </div>
+
                 <div class="form-group">
                   <label>Customer Name</label>
                   <input type="text" name="tb_customer_name" class="form-control">
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label>Machine ID</label>
                         <input type="text" name="tb_machine_id" class="form-control ">
                     </div>
                     <div class="col-md-6">
-                        <input type="hidden" name="cb_machine_status" value="new installation">
-                        {{-- <label>Status : New Installation</label> --}}
-                        {{-- <select name="cb_machine_status" id="cb_machine_status" class="form-control select2">
-                            <option value="new installation">new installation</option>
-                            <option value="transfered machine">transfered machine</option>
-                        </select> --}}
+                        {{-- <input type="hidden" name="cb_machine_status" value="new installation"> --}}
+                        <label>Machine Status</label>
+                        <select name="cb_machine_status" id="cb_machine_status" class="form-control select2">
+                            <option value="New Installation">New Installation</option>
+                            <option value="No Contract">No Contract</option>
+                            <option value="Rental">Rental</option>
+                            <option value="Maintenance & Part">Maintenance & Part</option>
+                            <option value="Maintenance Only">Maintenance Only</option>
+                            <option value="Part Only">Part Only</option>
+                            <option value="OnCall">OnCall</option>
+                            <option value="Warranty">Warranty</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -89,7 +118,7 @@ Yaksa Harmoni Global | Data Client/Customer
                     <label>Product</label>
                         <select name="cb_product" id="cb_product" class="form-control select2">
                             @forelse ($products as $product)
-                                <option value="{{$product->pdid}}">{{$product->product_name}} | {{$product->brand_name}} | {{$product->type_series}}</option>
+                                <option value="{{$product->id}}">{{$product->product_name}} | {{$product->brand_name}} | {{$product->type_series}}</option>
                             @empty
                                 <option>No Data</option>
                             @endforelse
@@ -117,6 +146,29 @@ Yaksa Harmoni Global | Data Client/Customer
                   <label>Activation Date</label>
                   <input type="date" name="dt_activation_date" class="form-control">
                 </div>
+                <div class="form-group jq-warranty">
+                  <label>Warranty Duration</label>
+                    <select name="cb_warranty" id="cb_warranty" class="form-control select2">
+                        <option selected value="none">none</option>
+                        <option value="1 year">1 year</option>
+                        <option value="2 years">2 years</option>
+                        <option value="3 years">3 years</option>
+                        <option value="4 years">4 years</option>
+                        <option value="5 years">5 years</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                  <label>Operational Hours</label>
+                    <select name="cb_operational_hours" id="cb_operational_hours" class="form-control select2">
+                        <option selected value="none">none</option>
+                        <option value="1 year">24 hours</option>
+                        <option value="6am-19pm all days">6am-19pm all days</option>
+                        <option value="6am-19pm monday-friday">6am-19pm monday-friday</option>
+                        <option value="8am-21pm all days">8am-21pm all days</option>
+                        <option value="8am-21pm monday-friday">8am-21pm monday-friday</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div>
               <!-- /.card-body -->
@@ -124,7 +176,7 @@ Yaksa Harmoni Global | Data Client/Customer
             <!-- /.card -->
         </form>
     </div>
-    <div class="col-md-6">
+    {{-- <div class="col-md-6">
         <form action="{{route('cl.moveMachine')}}" method="post">
             @csrf
             <div class="card card-primary">
@@ -166,7 +218,7 @@ Yaksa Harmoni Global | Data Client/Customer
             </div>
             <!-- /.card -->
         </form>
-    </div>
+    </div> --}}
 </div>
 <div class="card">
     <div class="card-header">
@@ -202,7 +254,14 @@ Yaksa Harmoni Global | Data Client/Customer
                         <td>{{$loop->iteration}}</td>
                         <td>{{$cl->client_customer_name}}</td>
                         <td>{{$cl->client_machine_id}}</td>
-                        <td>{{$cl->client_machine_status}}</td>
+                        <td>
+                            @if ($cl->client_machine_status != 'moved')
+
+                            <span class="badge badge-info">{{$cl->client_machine_status}}</span>
+                            @else
+                            <span class="badge badge-danger">{{$cl->client_machine_status}}</span>
+                            @endif
+                        </td>
                         <td>{{$cl->nama_cse}}</td>
                         <td>{{$cl->product_name}}</td>
                         <td>{{$cl->client_pic_name}}</td>
@@ -329,6 +388,33 @@ Yaksa Harmoni Global | Data Client/Customer
                             <input type="date" id="dtActivationDate" name="dtActivationDate" class="form-control">
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label>Warranty Duration</label>
+                              <select name="cb_warranty" id="cbWarranty" class="form-control select2">
+                                  <option selected value="none">none</option>
+                                  <option value="1 year">1 year</option>
+                                  <option value="2 years">2 years</option>
+                                  <option value="3 years">3 years</option>
+                                  <option value="4 years">4 years</option>
+                                  <option value="5 years">5 years</option>
+                              </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-12">
+                              <label>Operational Hours</label>
+                                <select name="cb_operational_hours" id="cbOperationalHours" class="form-control select2">
+                                    <option selected value="none">none</option>
+                                    <option value="1 year">24 hours</option>
+                                    <option value="6am-19pm all days">6am-19pm all days</option>
+                                    <option value="6am-19pm monday-friday">6am-19pm monday-friday</option>
+                                    <option value="8am-21pm all days">8am-21pm all days</option>
+                                    <option value="8am-21pm monday-friday">8am-21pm monday-friday</option>
+                                    <option value="Lainnya">Lainnya</option>
+                                </select>
+                          </div>
+                      </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Save changes</button>
@@ -360,6 +446,7 @@ Yaksa Harmoni Global | Data Client/Customer
 <!-- Page specific script -->
 <script>
   $(function () {
+
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
@@ -373,48 +460,93 @@ Yaksa Harmoni Global | Data Client/Customer
       "responsive": true,
     });
 
+    $('.jq-warranty').hide();
   });
 </script>
 <script>
-    // var productId = '';
-    // var cseId = '';
-    // var machineStatus = '';
-
     $('.select2').select2({
         theme: 'bootstrap4'
     })
-function edit(id){
-    var url = '/client/edit/'+id;
-    var link = '/client/update/'+id;
-    $.ajax({
-        url : url,
-        method: 'get',
-        success: function(response) {
-            $('#form-update').prop('action', link);
-            // machineStatus = response['client_machine_status'];
-            // cseId = response['customer_service_engineer_id'];
-            // productId = response['product_detail_id'];
 
-            $('#cbProduct').append(`<option selected value="${response['product_detail_id']}">current : ${response['product_name']}</option>`);
-            $('#cbCse').append(`<option selected value="${response['customer_service_engineer_id']}">current : ${response['nama_cse']}</option>`);
-            $('#tbCustomerName').val(response['client_customer_name']);
-            $('#tbMachineId').val(response['client_machine_id']);
-            $('#cbMachineStatus').append(`<option selected value="${response['client_machine_status']}">current : ${response['client_machine_status']}</option>`);
-            $('#tbPicName').val(response['client_pic_name']);
-            $('#tbPicHp').val(response['client_pic_hp']);
-            $('#tbSiteLocation').val(response['client_site_location_name']);
-            $('#tbSiteAddress').val(response['client_site_location_address']);
-            $('#dtActivationDate').val(response['client_activation_date']);
-            $('#update-modal').modal('show');
+    $('#cb_machine_status').change(function (e){
+        e.preventDefault();
+        if ($(this).val() == 'Warranty') {
+            $('.jq-warranty').show();
+        }else{
+            $('.jq-warranty').hide();
         }
     });
-}
-function closeModal(){
-    $("#cbProduct option:contains('current : ')").remove();
-    $("#cbCse option:contains('current : ')").remove();
-    $("#cbMachineStatus option:contains('current : ')").remove();
-    $('#update-modal').modal('hide');
-    // $("#cbProduct option[value = productId]").remove();
-}
+
+    function edit(id){
+        var url = '/client/edit/'+id;
+        var link = '/client/update/'+id;
+        $.ajax({
+            url : url,
+            method: 'get',
+            success: function(response) {
+                $('#form-update').prop('action', link);
+                // machineStatus = response['client_machine_status'];
+                // cseId = response['customer_service_engineer_id'];
+                // productId = response['product_detail_id'];
+
+                $('#cbProduct').append(`<option selected value="${response['product_detail_id']}">current : ${response['product_name']}</option>`);
+                $('#cbCse').append(`<option selected value="${response['customer_service_engineer_id']}">current : ${response['nama_cse']}</option>`);
+                $('#tbCustomerName').val(response['client_customer_name']);
+                $('#tbMachineId').val(response['client_machine_id']);
+                $('#cbMachineStatus').append(`<option selected value="${response['client_machine_status']}">current : ${response['client_machine_status']}</option>`);
+                $('#tbPicName').val(response['client_pic_name']);
+                $('#tbPicHp').val(response['client_pic_hp']);
+                $('#tbSiteLocation').val(response['client_site_location_name']);
+                $('#tbSiteAddress').val(response['client_site_location_address']);
+                $('#dtActivationDate').val(response['client_activation_date']);
+                $('#cbWarranty').val(response['client_warranty_year']);
+                $('#cbOperationalHours').val(response['client_operation_hours']);
+                $('#update-modal').modal('show');
+            }
+        });
+    }
+
+    function closeModal(){
+        $("#cbProduct option:contains('current : ')").remove();
+        $("#cbCse option:contains('current : ')").remove();
+        $("#cbMachineStatus option:contains('current : ')").remove();
+        $('#update-modal').modal('hide');
+        // $("#cbProduct option[value = productId]").remove();
+    }
+
+    ///fungsi get data client saat select berubah
+    $('#cb_move_client').change(function (e) {
+        e.preventDefault();
+        console.log($(this).val());
+        let id = $(this).val();
+        let url = '/jobcard/getClientDataAjax/'+id;
+        let link = '/client/relocate/'+id;
+        $.ajax({
+            url: url,
+            method: "get",
+            success: function (response) {
+                console.table(response);
+                $('#relocateButton').prop('href', link);
+            }
+        });
+    });
+
+    ///fungsi get data client saat laad
+    function getClientToLink() {
+        console.log($('#cb_move_client').val());
+        let id = $('#cb_move_client').val();
+        let url = '/jobcard/getClientDataAjax/'+id;
+        let link = '/client/relocate/'+id;
+        $.ajax({
+            url: url,
+            method: "get",
+            success: function (response) {
+                console.table(response);
+                $('#relocateButton').prop('href', link);
+            }
+        });
+    }
+
+getClientToLink();
 </script>
 @endsection

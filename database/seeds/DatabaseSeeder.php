@@ -72,21 +72,31 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('clients')->insert([
             'product_detail_id' => 1,
-            'client_customer_name' => 'dummy client',
+            'customer_service_engineer_id' => 1,
             'client_machine_id' => 1,
+            'client_customer_name' => 'dummy client',
             'client_machine_status' => 'new installation',
             'client_pic_name' => 'dummy pic name',
             'client_pic_hp' => '0211231231',
             'client_site_location_name' => 'dummy site loc.',
             'client_site_location_address' => 'dummy address',
-            'customer_service_engineer_id' => 1,
             'client_activation_date' => now(),
+            'client_operation_hours' => '24 hours',
+            'client_warranty_year' => '1 year',
+
         ]);
         DB::table('product_details')->insert([
             'product_name' => 'dummy product',
             'brand_name' => 'dummy brand',
             'type_series' => 'dummy type',
             'serial_number' => 'dummy serial',
+            'date_of_entry' => now(),
+        ]);
+        DB::table('product_details')->insert([
+            'product_name' => 'dummy product 2',
+            'brand_name' => 'dummy brand 2',
+            'type_series' => 'dummy type 2',
+            'serial_number' => 'dummy serial 2',
             'date_of_entry' => now(),
         ]);
         DB::table('customer_service_engineers')->insert([
@@ -96,6 +106,14 @@ class DatabaseSeeder extends Seeder
             'area_cse' => 'none',
             'hp_cse' => 'none',
             'leader_cse' => 'none',
+        ]);
+        DB::table('customer_service_engineers')->insert([
+            'sp_id' => 2,
+            'nama_cse' => 'cse 1',
+            'initial_cse' => 'mr.cse',
+            'area_cse' => 'jkt',
+            'hp_cse' => '12413543346',
+            'leader_cse' => 'mr.cse',
         ]);
     }
 }

@@ -41,6 +41,8 @@ class ClientController extends Controller
         $client->client_site_location_address = $request->tb_site_address;
         $client->client_activation_date = $request->dt_activation_date;
         $client->customer_service_engineer_id = $request->cb_cse;
+        $client->client_warranty_year = $request->cb_warranty;
+        $client->client_operation_hours = $request->cb_operational_hours;
         $client->save();
         return redirect()->route('cl.index')->with('message', 'data successfuly added');
     }
@@ -70,6 +72,8 @@ class ClientController extends Controller
         $client->client_activation_date = $request->dtActivationDate;
         $client->customer_service_engineer_id = $request->cbCse;
         $client->product_detail_id = $request->cbProduct;
+        $client->client_warranty_year = $request->cbWarranty;
+        $client->client_operation_hours = $request->cbOperationalHours;
         $client->save();
         return redirect()->route('cl.index')->with('message', 'data successfuly added');
     }
@@ -83,21 +87,34 @@ class ClientController extends Controller
 
     public function moveMachine(Request $request)
     {
-        $oldClient = Client::find($request->cb_client);
-        $moveClient = new Client;
-        $moveClient->product_detail_id = $oldClient->product_detail_id;
-        $moveClient->client_customer_name = $oldClient->client_customer_name;
-        $moveClient->client_machine_id = $oldClient->client_machine_id;
-        $moveClient->client_pic_name = $oldClient->client_pic_name;
-        $moveClient->client_pic_hp = $oldClient->client_pic_hp;
-        $moveClient->client_activation_date = $oldClient->client_activation_date;
-        $moveClient->customer_service_engineer_id = $oldClient->customer_service_engineer_id;
-        $moveClient->product_detail_id = $oldClient->product_detail_id;
+        $oldClient = Client::find($request->tb_client_id);
 
+        $moveClient = new Client;
+        $moveClient->client_customer_name = $request->tb_customer_name;
+        $moveClient->client_machine_id = $request->tb_machine_id;
+        $moveClient->client_pic_name = $request->tb_pic_name;
+        $moveClient->client_pic_hp = $request->tb_pic_hp;
+        $moveClient->client_activation_date = $request->dt_activation_date;
+        $moveClient->customer_service_engineer_id = $request->cb_cse;
+        $moveClient->product_detail_id = $oldClient->product_detail_id;
         $moveClient->client_machine_status = 'moved';
-        $moveClient->client_site_location_name = $request->tb_move_site_location;
-        $moveClient->client_site_location_address = $request->tb_move_site_address;
+        $moveClient->client_site_location_name = $request->tb_site_location;
+        $moveClient->client_site_location_address = $request->tb_site_address;
+        $moveClient->client_warranty_year = $oldClient->client_warranty_year;
+        $moveClient->client_operation_hours = $oldClient->client_operation_hours;
         $moveClient->save();
-        return redirect()->route('cl.index')->with('message', 'changed to moved successfuly');
+        return redirect()->route('cl.index')->with('message', 'moved successfuly');
+    }
+
+    public function showRelocateClient($id)
+    {
+        $cse = CustomerServiceEngineer::all();
+        $clients = DB::table('clients')
+            ->join('product_details', 'clients.product_detail_id', '=', 'product_details.id')
+            ->join('customer_service_engineers', 'clients.customer_service_engineer_id', '=', 'customer_service_engineers.id')
+            ->select('product_details.*', 'clients.*', 'customer_service_engineers.*', 'clients.id AS cid', 'customer_service_engineers.id AS cseid', 'product_details.id AS pdid')
+            ->where('clients.id', '=', $id)
+            ->first();
+        return view('Client.relocate', ['client' => $clients, 'cse' => $cse]);
     }
 }
