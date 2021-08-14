@@ -81,17 +81,17 @@ Yaksa Harmoni Global | Data Client/Customer
 
                 <div class="form-group">
                   <label>Customer Name</label>
-                  <input type="text" name="tb_customer_name" class="form-control">
+                  <input required type="text" name="tb_customer_name" class="form-control">
                 </div>
                 <div class="form-group row">
                     <div class="col-md-6">
                         <label>Machine ID</label>
-                        <input type="text" name="tb_machine_id" class="form-control ">
+                        <input required type="text" name="tb_machine_id" class="form-control ">
                     </div>
                     <div class="col-md-6">
                         {{-- <input type="hidden" name="cb_machine_status" value="new installation"> --}}
                         <label>Machine Status</label>
-                        <select name="cb_machine_status" id="cb_machine_status" class="form-control select2">
+                        <select required name="cb_machine_status" id="cb_machine_status" class="form-control select2">
                             <option value="New Installation">New Installation</option>
                             <option value="No Contract">No Contract</option>
                             <option value="Rental">Rental</option>
@@ -106,17 +106,17 @@ Yaksa Harmoni Global | Data Client/Customer
                 <div class="form-group row">
                     <div class="col-md-6">
                         <label>PIC Name</label>
-                        <input type="text" name="tb_pic_name" class="form-control ">
+                        <input required type="text" name="tb_pic_name" class="form-control ">
                     </div>
                     <div class="col-md-6">
                         <label>PIC No. HP</label>
-                        <input type="text" name="tb_pic_hp" class="form-control ">
+                        <input required type="text" name="tb_pic_hp" class="form-control ">
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Product</label>
-                        <select name="cb_product" id="cb_product" class="form-control select2">
+                        <select required name="cb_product" id="cb_product" class="form-control select2">
                             @forelse ($products as $product)
                                 <option value="{{$product->id}}">{{$product->product_name}} | {{$product->brand_name}} | {{$product->type_series}}</option>
                             @empty
@@ -126,7 +126,7 @@ Yaksa Harmoni Global | Data Client/Customer
                 </div>
                 <div class="form-group">
                     <label>CS Engineer</label>
-                        <select name="cb_cse" id="cb_cse" class="form-control select2">
+                        <select required name="cb_cse" id="cb_cse" class="form-control select2">
                             @forelse ($cse as $cs)
                                 <option value="{{$cs->id}}">{{$cs->nama_cse}}</option>
                             @empty
@@ -136,19 +136,19 @@ Yaksa Harmoni Global | Data Client/Customer
                 </div>
                 <div class="form-group">
                   <label>Site Location</label>
-                  <input type="text" name="tb_site_location" class="form-control">
+                  <input required type="text" name="tb_site_location" class="form-control">
                 </div>
                 <div class="form-group">
                   <label>Site Address</label>
-                  <input type="text" name="tb_site_address" class="form-control">
+                  <input required type="text" name="tb_site_address" class="form-control">
                 </div>
                 <div class="form-group">
                   <label>Activation Date</label>
-                  <input type="date" name="dt_activation_date" class="form-control">
+                  <input required type="date" name="dt_activation_date" class="form-control">
                 </div>
                 <div class="form-group jq-warranty">
                   <label>Warranty Duration</label>
-                    <select name="cb_warranty" id="cb_warranty" class="form-control select2">
+                    <select required name="cb_warranty" id="cb_warranty" class="form-control select2">
                         <option selected value="none">none</option>
                         <option value="1 year">1 year</option>
                         <option value="2 years">2 years</option>
@@ -159,7 +159,7 @@ Yaksa Harmoni Global | Data Client/Customer
                 </div>
                 <div class="form-group">
                   <label>Operational Hours</label>
-                    <select name="cb_operational_hours" id="cb_operational_hours" class="form-control select2">
+                    <select required name="cb_operational_hours" id="cb_operational_hours" class="form-control select2">
                         <option selected value="none">none</option>
                         <option value="1 year">24 hours</option>
                         <option value="6am-19pm all days">6am-19pm all days</option>
@@ -319,17 +319,17 @@ Yaksa Harmoni Global | Data Client/Customer
                     <div class="form-group row">
                         <div class="col-12">
                             <label for="tbCustomerName" class="form-label">Customer name</label>
-                            <input type="text" id="tbCustomerName" name="tbCustomerName" class="form-control">
+                            <input required type="text" id="tbCustomerName" name="tbCustomerName" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-6">
                             <label>Machine ID</label>
-                            <input type="text" name="tbMachineId" id="tbMachineId" class="form-control ">
+                            <input required type="text" name="tbMachineId" id="tbMachineId" class="form-control ">
                         </div>
                         <div class="col-md-6">
                             <label>Status</label>
-                            <select name="cbMachineStatus" id="cbMachineStatus" class="form-control select2">
+                            <select required name="cbMachineStatus" id="cbMachineStatus" class="form-control select2">
                                 <option value="New Installation">New Installation</option>
                                 <option value="No Contract">No Contract</option>
                                 <option value="Rental">Rental</option>
@@ -344,18 +344,18 @@ Yaksa Harmoni Global | Data Client/Customer
                     <div class="form-group row">
                         <div class="col-md-6">
                             <label>PIC Name</label>
-                            <input type="text" name="tbPicName" id="tbPicName" class="form-control ">
+                            <input required type="text" name="tbPicName" id="tbPicName" class="form-control ">
                         </div>
                         <div class="col-md-6">
                             <label>PIC No. HP</label>
-                            <input type="text" name="tbPicHp" id="tbPicHp" class="form-control ">
+                            <input required type="text" name="tbPicHp" id="tbPicHp" class="form-control ">
                             </select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
                             <label>Product</label>
-                            <select name="cbProduct" id="cbProduct" class="form-control select2">
+                            <select required name="cbProduct" id="cbProduct" class="form-control select2">
                                 @forelse ($products as $product)
                                     <option value="{{$product->id}}">{{$product->product_name}} | {{$product->brand_name}} | {{$product->type_series}}</option>
                                 @empty
@@ -367,7 +367,7 @@ Yaksa Harmoni Global | Data Client/Customer
                     <div class="form-group row">
                         <div class="col-12">
                             <label>CS Engineer</label>
-                            <select name="cbCse" id="cbCse" class="form-control select2">
+                            <select required name="cbCse" id="cbCse" class="form-control select2">
                                 @forelse ($cse as $cs)
                                     <option value="{{$cs->id}}">{{$cs->nama_cse}}</option>
                                 @empty
@@ -379,25 +379,25 @@ Yaksa Harmoni Global | Data Client/Customer
                     <div class="form-group row">
                         <div class="col-12">
                             <label for="tbSiteLocation" class="form-label">Site Location</label>
-                            <input type="text" id="tbSiteLocation" name="tbSiteLocation" class="form-control">
+                            <input required type="text" id="tbSiteLocation" name="tbSiteLocation" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
                             <label for="tbSiteAddress" class="form-label">Site Address</label>
-                            <input type="text" id="tbSiteAddress" name="tbSiteAddress" class="form-control">
+                            <input required type="text" id="tbSiteAddress" name="tbSiteAddress" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
                             <label for="dtActivationDate" class="form-label">Activation Date</label>
-                            <input type="date" id="dtActivationDate" name="dtActivationDate" class="form-control">
+                            <input required type="date" id="dtActivationDate" name="dtActivationDate" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
                             <label>Warranty Duration</label>
-                              <select name="cb_warranty" id="cbWarranty" class="form-control select2">
+                              <select required name="cb_warranty" id="cbWarranty" class="form-control select2">
                                   <option selected value="none">none</option>
                                   <option value="1 year">1 year</option>
                                   <option value="2 years">2 years</option>
@@ -410,7 +410,7 @@ Yaksa Harmoni Global | Data Client/Customer
                       <div class="form-group row">
                           <div class="col-12">
                               <label>Operational Hours</label>
-                                <select name="cb_operational_hours" id="cbOperationalHours" class="form-control select2">
+                                <select required name="cb_operational_hours" id="cbOperationalHours" class="form-control select2">
                                     <option selected value="none">none</option>
                                     <option value="1 year">24 hours</option>
                                     <option value="6am-19pm all days">6am-19pm all days</option>

@@ -55,14 +55,14 @@ Yaksa Harmoni Global | Data Business Partner
               <div class="card-body">
                 <div class="form-group">
                   <label>Company Name</label>
-                  <input type="text" name="tb_company_name" class="form-control">
+                  <input required type="text" name="tb_company_name" class="form-control">
                   @error('tb_company_name')
                       <small style="color: red">this field is required</small>
                   @enderror
                 </div>
                 <div class="form-group">
                   <label>Company Address</label>
-                  <input type="text" name="tb_company_address" class="form-control">
+                  <input required type="text" name="tb_company_address" class="form-control">
                   @error('tb_company_address')
                       <small style="color: red">this field is required</small>
                   @enderror
@@ -109,7 +109,7 @@ Yaksa Harmoni Global | Data Business Partner
                         <tr>
                             <td>
                                 <div class="form-group">
-                                    <input type="text" name="tb_pic_name[]" class="form-control">
+                                    <input required type="text" name="tb_pic_name[]" class="form-control">
                                     @error('tb_pic_name')
                                         <small style="color: red">this field is required</small>
                                     @enderror
@@ -117,7 +117,7 @@ Yaksa Harmoni Global | Data Business Partner
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <input type="text" name="tb_contact_number[]" class="form-control">
+                                    <input required type="text" name="tb_contact_number[]" class="form-control">
                                     @error('tb_contact_number')
                                         <small style="color: red">this field is required</small>
                                     @enderror
@@ -125,7 +125,7 @@ Yaksa Harmoni Global | Data Business Partner
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <input type="text" name="tb_email[]" class="form-control">
+                                    <input required type="text" name="tb_email[]" class="form-control">
                                     @error('tb_email')
                                         <small style="color: red">this field is required</small>
                                     @enderror
@@ -136,7 +136,7 @@ Yaksa Harmoni Global | Data Business Partner
                 </table>
                 <div class="form-group">
                   <label>Bank Name / Project</label>
-                  <input type="text" name="tb_bank_name" class="form-control">
+                  <input required type="text" name="tb_bank_name" class="form-control">
                   @error('tb_bank_name')
                       <small style="color: red">this field is required</small>
                   @enderror
@@ -337,7 +337,7 @@ $('#addRow').click(function (e) {
     const row = `<tr>
                     <td>
                         <div class="form-group">
-                            <input type="text" name="tb_pic_name[]" class="form-control">
+                            <input required type="text" name="tb_pic_name[]" class="form-control">
                             @error('tb_pic_name')
                                 <small style="color: red">this field is required</small>
                             @enderror
@@ -345,7 +345,7 @@ $('#addRow').click(function (e) {
                     </td>
                     <td>
                         <div class="form-group">
-                            <input type="text" name="tb_contact_number[]" class="form-control">
+                            <input required type="text" name="tb_contact_number[]" class="form-control">
                             @error('tb_contact_number')
                                 <small style="color: red">this field is required</small>
                             @enderror
@@ -353,7 +353,7 @@ $('#addRow').click(function (e) {
                     </td>
                     <td>
                         <div class="form-group">
-                            <input type="text" name="tb_email[]" class="form-control">
+                            <input required type="text" name="tb_email[]" class="form-control">
                             @error('tb_email')
                                 <small style="color: red">this field is required</small>
                             @enderror

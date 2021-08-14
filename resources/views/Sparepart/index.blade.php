@@ -58,15 +58,15 @@ Yaksa Harmoni Global | Data Sparepart
               <div class="card-body">
                 <div class="form-group">
                   <label>Part Number</label>
-                  <input type="text" name="tb_part_number" class="form-control">
+                  <input required type="text" name="tb_part_number" class="form-control">
                 </div>
                 <div class="form-group">
                   <label>Serial Number</label>
-                  <input type="text" name="tb_serial_number" class="form-control">
+                  <input required type="text" name="tb_serial_number" class="form-control">
                 </div>
                 <div class="form-group">
                   <label>Part Name</label>
-                  <input type="text" name="tb_part_name" class="form-control">
+                  <input required type="text" name="tb_part_name" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="cb_condition">Condition</label>
@@ -77,19 +77,19 @@ Yaksa Harmoni Global | Data Sparepart
                 </div>
                 <div class="form-group">
                   <label>Quantity</label>
-                  <input type="number" name="tb_part_qty" class="form-control">
+                  <input required type="number" name="tb_part_qty" class="form-control">
                 </div>
                 <div class="form-group">
                   <label>Date Entry</label>
-                  <input type="date" name="tb_date_entry" class="form-control">
+                  <input required type="date" name="tb_date_entry" class="form-control">
                 </div>
                 <div class="form-group">
                   <label>Date Out</label>
-                  <input type="date" name="tb_date_out" class="form-control">
+                  <input required type="date" name="tb_date_out" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Product</label>
-                    <select class="form-control select2" style="width: 100%;" name="cb_product" id="cb_product">
+                    <select required class="form-control select2" style="width: 100%;" name="cb_product" id="cb_product">
                         @forelse ($products as $product)
                         <option value="{{$product->id}}">{{$product->product_name}} | {{$product->brand_name}} | {{$product->type_series}}</option>
                         @empty
@@ -193,25 +193,25 @@ Yaksa Harmoni Global | Data Sparepart
                     <div class="form-group row">
                         <div class="col-12">
                             <label for="tbPartNumber" class="form-label">Part Number</label>
-                            <input type="text" id="tbPartNumber" name="tbPartNumber" class="form-control">
+                            <input required type="text" id="tbPartNumber" name="tbPartNumber" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
                             <label for="tbSerialNumber" class="form-label">Serial Number</label>
-                            <input type="text" id="tbSerialNumber" name="tbSerialNumber" class="form-control">
+                            <input required type="text" id="tbSerialNumber" name="tbSerialNumber" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
                             <label for="tbPartName" class="form-label">Part Name</label>
-                            <input type="text" id="tbPartName" name="tbPartName" class="form-control">
+                            <input required type="text" id="tbPartName" name="tbPartName" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
                             <label for="cbCondition" class="form-label">Condition</label><br>
-                            <select class="form-control" name="cbCondition" id="cbCondition">
+                            <select required class="form-control" name="cbCondition" id="cbCondition">
                                 <option>New</option>
                                 <option>Used</option>
                             </select>
@@ -220,13 +220,13 @@ Yaksa Harmoni Global | Data Sparepart
                     <div class="form-group row">
                         <div class="col-12">
                             <label for="tbPartQty" class="form-label">Part Quantity</label>
-                            <input type="text" id="tbPartQty" name="tbPartQty" class="form-control">
+                            <input required type="text" id="tbPartQty" name="tbPartQty" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
                             <label>Product</label><br>
-                            <select class="form-control select2" style="width: 100%;" name="cbProduct" id="cbProduct">
+                            <select required class="form-control select2" style="width: 100%;" name="cbProduct" id="cbProduct">
                                 @forelse ($products as $product)
                                 <option value="{{$product->id}}">{{$product->product_name}} | {{$product->brand_name}} | {{$product->type_series}}</option>
                                 @empty
@@ -239,13 +239,13 @@ Yaksa Harmoni Global | Data Sparepart
                     <div class="form-group row">
                         <div class="col-12">
                             <label for="tbDateEntry" class="form-label">Date Entry</label>
-                            <input type="date" id="tbDateEntry" name="tbDateEntry" class="form-control">
+                            <input required type="date" id="tbDateEntry" name="tbDateEntry" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
                             <label for="tbDateOut" class="form-label">Date Out</label>
-                            <input type="date" id="tbDateOut" name="tbDateOut" class="form-control">
+                            <input required type="date" id="tbDateOut" name="tbDateOut" class="form-control">
                         </div>
                     </div>
                 </div>

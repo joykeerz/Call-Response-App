@@ -55,23 +55,23 @@ Yaksa Harmoni Global | Data Detail Products
               <div class="card-body">
                 <div class="form-group">
                   <label>Serial Number</label>
-                  <input type="text" name="tb_serial_number" class="form-control">
+                  <input required type="text" name="tb_serial_number" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Product Name</label>
-                    <input type="text" name="tb_product_name" class="form-control">
+                    <input required type="text" name="tb_product_name" class="form-control">
                   </div>
                 <div class="form-group">
                   <label>Brand Name</label>
-                  <input type="text" name="tb_brand_name" class="form-control">
+                  <input required type="text" name="tb_brand_name" class="form-control">
                 </div>
                 <div class="form-group">
                   <label>Type Series</label>
-                  <input type="text" name="tb_type_series" class="form-control">
+                  <input required type="text" name="tb_type_series" class="form-control">
                 </div>
                 <div class="form-group">
                   <label>Entry Date</label>
-                  <input type="date" name="tb_entry_date" class="form-control">
+                  <input required type="date" name="tb_entry_date" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div>
@@ -159,31 +159,31 @@ Yaksa Harmoni Global | Data Detail Products
                     <div class="form-group row">
                         <div class="col-12">
                             <label for="tb_pd_serial_number" class="form-label">Serial Number</label>
-                            <input type="text" id="tb_pd_serial_number" name="tb_pd_serial_number" class="form-control">
+                            <input required type="text" id="tb_pd_serial_number" name="tb_pd_serial_number" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
                             <label for="tb_pd_product_name" class="form-label">Product Name</label>
-                            <input type="text" id="tb_pd_product_name" name="tb_pd_product_name" class="form-control">
+                            <input required type="text" id="tb_pd_product_name" name="tb_pd_product_name" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
                             <label for="tb_pd_brand_name" class="form-label">Brand Name</label>
-                            <input type="text" id="tb_pd_brand_name" name="tb_pd_brand_name" class="form-control">
+                            <input required type="text" id="tb_pd_brand_name" name="tb_pd_brand_name" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
                             <label for="tb_pd_type_series" class="form-label">Type Series</label>
-                            <input type="text" id="tb_pd_type_series" name="tb_pd_type_series" class="form-control">
+                            <input required type="text" id="tb_pd_type_series" name="tb_pd_type_series" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12">
                             <label for="tb_pd_entry_date" class="form-label">Entry Date</label>
-                            <input type="date" id="tb_pd_entry_date" name="tb_pd_entry_date" class="form-control">
+                            <input required type="date" id="tb_pd_entry_date" name="tb_pd_entry_date" class="form-control">
                         </div>
                     </div>
                 </div>
