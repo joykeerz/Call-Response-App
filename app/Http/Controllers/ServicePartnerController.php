@@ -23,7 +23,6 @@ class ServicePartnerController extends Controller
         $validateData = $request->validate([
             'tb_company_name' => 'required',
             'tb_company_address' => 'required',
-            'tb_pic_name' => 'required',
             'tb_bank_name' => 'required'
         ]);
 
