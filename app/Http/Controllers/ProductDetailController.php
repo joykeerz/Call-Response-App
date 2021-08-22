@@ -31,7 +31,7 @@ class ProductDetailController extends Controller
         if ($productDetail->wasRecentlyCreated == true) {
             $message = 'data successfuly added';
         } else {
-            $message = 'data already exist';
+            $message = 'serial already exist';
         }
         return redirect()->route('pd.index')->with('message', $message);
     }
