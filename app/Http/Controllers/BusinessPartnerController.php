@@ -24,26 +24,34 @@ class BusinessPartnerController extends Controller
             'tb_company_name' => 'required',
             'tb_company_address' => 'required',
             'tb_pic_name' => 'required',
-            'tb_contact_number' => 'required',
-            'tb_email' => 'required',
             'tb_bank_name' => 'required'
         ]);
 
-        $bps = Bp::firstOrNew(['bp_company_name' => $request->tb_company_name]);
+        $bps = new Bp();
         $bps->bp_company_name = $request->tb_company_name;
         $bps->bp_company_address = $request->tb_company_address;
+
         if (!empty($request->tb_pic_name)) {
             $arrayPicName = join(',', $request->tb_pic_name);
             $bps->bp_pic_name = $arrayPicName;
+        } else {
+            $bps->bp_pic_name = $request->tb_pic_name;
         }
+
         if (!empty($request->tb_contact_number)) {
             $arrayPicContact = join(',', $request->tb_contact_number);
             $bps->bp_contact_number = $arrayPicContact;
+        } else {
+            $bps->bp_contact_number = 'none';
         }
+
         if (!empty($request->tb_email)) {
             $arrayPicEmail = join(',', $request->tb_email);
             $bps->bp_email = $arrayPicEmail;
+        } else {
+            $bps->bp_email = 'none';
         }
+
         $bps->bp_bank_name = $request->tb_bank_name;
         $bps->save();
         return redirect()->route('bp.index')->with('message', 'data successfuly added');

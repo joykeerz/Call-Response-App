@@ -24,26 +24,34 @@ class ServicePartnerController extends Controller
             'tb_company_name' => 'required',
             'tb_company_address' => 'required',
             'tb_pic_name' => 'required',
-            'tb_contact_number' => 'required',
-            'tb_email' => 'required',
             'tb_bank_name' => 'required'
         ]);
 
-        $sps = Sp::firstOrNew(['sp_company_name' => $request->tb_company_name]);
+        $sps = new Sp();
         $sps->sp_company_name = $request->tb_company_name;
         $sps->sp_company_address = $request->tb_company_address;
+
         if (!empty($request->tb_pic_name)) {
             $arrayPicName = join(',', $request->tb_pic_name);
             $sps->sp_pic_name = $arrayPicName;
+        } else {
+            $sps->sp_pic_name = '';
         }
+
         if (!empty($request->tb_contact_number)) {
             $arrayPicContact = join(',', $request->tb_contact_number);
             $sps->sp_contact_number = $arrayPicContact;
+        } else {
+            $sps->sp_contact_number = 'none';
         }
+
         if (!empty($request->tb_email)) {
             $arrayPicEmail = join(',', $request->tb_email);
             $sps->sp_email = $arrayPicEmail;
+        } else {
+            $sps->sp_email = 'none';
         }
+
         $sps->sp_bank_name = $request->tb_bank_name;
         $sps->save();
         return redirect()->route('sp.index')->with('message', 'data successfuly added');

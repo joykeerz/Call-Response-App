@@ -109,7 +109,7 @@ Yaksa Harmoni Global | Data Business Partner
                         <tr>
                             <td>
                                 <div class="form-group">
-                                    <input required type="text" name="tb_pic_name[]" class="form-control">
+                                    <input type="text" name="tb_pic_name[]" class="form-control">
                                     @error('tb_pic_name')
                                         <small style="color: red">this field is required</small>
                                     @enderror
@@ -117,7 +117,7 @@ Yaksa Harmoni Global | Data Business Partner
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <input required type="text" name="tb_contact_number[]" class="form-control">
+                                    <input type="text" name="tb_contact_number[]" class="form-control">
                                     @error('tb_contact_number')
                                         <small style="color: red">this field is required</small>
                                     @enderror
@@ -125,7 +125,7 @@ Yaksa Harmoni Global | Data Business Partner
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <input required type="text" name="tb_email[]" class="form-control">
+                                    <input type="text" name="tb_email[]" class="form-control">
                                     @error('tb_email')
                                         <small style="color: red">this field is required</small>
                                     @enderror
