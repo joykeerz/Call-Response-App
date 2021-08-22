@@ -27,7 +27,13 @@ class ProductDetailController extends Controller
         $productDetail->serial_number = $request->tb_serial_number;
         $productDetail->date_of_entry = $request->tb_entry_date;
         $productDetail->save();
-        return redirect()->route('pd.index')->with('message', 'data successfuly added');
+
+        if ($productDetail->wasRecentlyCreated == true) {
+            $message = 'data successfuly added';
+        } else {
+            $message = 'data already exist';
+        }
+        return redirect()->route('pd.index')->with('message', $message);
     }
 
     public function edit($id)
