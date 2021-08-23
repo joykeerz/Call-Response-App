@@ -29,9 +29,23 @@ Yaksa Harmoni Global | Data Detail Products
 <div class="row">
     <div class="col-md-12">
         @if(Session::has('message'))
-        <div class="alert alert-success alert-dismissible">
+        <div class="alert
+            @if (Session::get('message') == 'serial already exist')
+            alert-danger
+            @else
+            alert-success
+            @endif
+             alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h5><i class="icon fas fa-check"></i> Alert!</h5>
+            <h5>
+                @if (Session::get('message') == 'serial already exist')
+                <i class="icon fas fa-times"></i> Alert!
+                @else
+                <i class="icon fas fa-check"></i> Alert!
+                @endif
+
+            </h5>
+
             {{ Session::get('message') }}
         </div>
         @endif
