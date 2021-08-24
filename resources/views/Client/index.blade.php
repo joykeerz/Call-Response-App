@@ -133,7 +133,9 @@ Yaksa Harmoni Global | Data Client/Customer
                     <label>CS Engineer</label>
                         <select required name="cb_cse" id="cb_cse" class="form-control select2">
                             @forelse ($cse as $cs)
-                                <option value="{{$cs->id}}">{{$cs->nama_cse}}</option>
+                                @if ($cs->nama_cse != 'cse 1')
+                                    <option value="{{$cs->id}}">{{$cs->nama_cse}}</option>
+                                @endif
                             @empty
                                 <option>No Data</option>
                             @endforelse
