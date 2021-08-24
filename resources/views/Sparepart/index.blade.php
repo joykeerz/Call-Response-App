@@ -83,10 +83,10 @@ Yaksa Harmoni Global | Data Sparepart
                   <label>Date Entry</label>
                   <input required type="date" name="tb_date_entry" class="form-control">
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                   <label>Date Out</label>
                   <input required type="date" name="tb_date_out" class="form-control">
-                </div>
+                </div> --}}
                 <div class="form-group">
                     <label>Product</label>
                     <select required class="form-control select2" style="width: 100%;" name="cb_product" id="cb_product">
@@ -128,7 +128,7 @@ Yaksa Harmoni Global | Data Sparepart
               <th>Qty</th>
               <th>Product Detail</th>
               <th>Date Entry</th>
-              <th>Date Out</th>
+              {{-- <th>Date Out</th> --}}
               <th>Details Info</th>
             </tr>
             </thead>
@@ -143,7 +143,7 @@ Yaksa Harmoni Global | Data Sparepart
                         <td>{{$sparepart->part_qty}}</td>
                         <td>{{$sparepart->product_name}} | {{$sparepart->brand_name}} | {{$sparepart->type_series}}</td>
                         <td>{{$sparepart->part_date_of_entry}}</td>
-                        <td>{{$sparepart->part_out_date}}</td>
+                        {{-- <td>{{$sparepart->part_out_date}}</td> --}}
                         <td>
                             <button onclick="edit('{{$sparepart->spid}}')" class="btn btn-success float-right mr-2"><i class="fa fa-pencil-alt"></i></button>
                             <a onclick="return confirm('are you sure?')" class="btn btn-danger float-right mr-2" href="{{route('spp.delete',['id'=>$sparepart->spid])}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
@@ -157,16 +157,16 @@ Yaksa Harmoni Global | Data Sparepart
             </tbody>
             <tfoot>
             <tr>
-              <th>#</th>
-              <th>Part Number</th>
-              <th>Part Serial</th>
-              <th>Part Name</th>
-              <th>Qty</th>
-              <th>Date Entry</th>
-              <th>Date Out</th>
-              <th>Condition</th>
-              <th>Product Detail</th>
-              <th>Details Info</th>
+                <th>#</th>
+                <th>Part Number</th>
+                <th>Part Serial</th>
+                <th>Part Name</th>
+                <th>Condition</th>
+                <th>Qty</th>
+                <th>Product Detail</th>
+                <th>Date Entry</th>
+                {{-- <th>Date Out</th> --}}
+                <th>Details Info</th>
             </tr>
             </tfoot>
         </table>
@@ -242,12 +242,12 @@ Yaksa Harmoni Global | Data Sparepart
                             <input required type="date" id="tbDateEntry" name="tbDateEntry" class="form-control">
                         </div>
                     </div>
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <div class="col-12">
                             <label for="tbDateOut" class="form-label">Date Out</label>
                             <input required type="date" id="tbDateOut" name="tbDateOut" class="form-control">
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Save changes</button>

@@ -36,7 +36,7 @@ class SparepartController extends Controller
         $spareparts->part_qty = $request->tb_part_qty;
         $spareparts->part_condition = $request->cb_condition;
         $spareparts->part_date_of_entry = $request->tb_date_entry;
-        $spareparts->part_out_date = $request->tb_date_out;
+        // $spareparts->part_out_date = $request->tb_date_out;
         $spareparts->save();
         return redirect()->route('spp.index')->with('message', 'data successfuly added');
     }
@@ -62,7 +62,7 @@ class SparepartController extends Controller
         $spareparts->part_qty = $request->tbPartQty;
         $spareparts->product_detail_id = $request->cbProduct;
         $spareparts->part_date_of_entry = $request->tbDateEntry;
-        $spareparts->part_out_date = $request->tbDateOut;
+        // $spareparts->part_out_date = $request->tbDateOut;
         $spareparts->save();
         return redirect()->route('spp.index')->with('message', 'data successfuly updated');
     }
