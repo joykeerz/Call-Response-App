@@ -405,8 +405,8 @@ Yaksa Harmoni Global | Data Client/Customer
                     <div class="form-group row">
                         <div class="col-12">
                             <label>Warranty Duration</label>
-                              <select required name="cb_warranty" id="cbWarranty" class="form-control select2">
-                                  <option selected value="none">none</option>
+                              <select required name="cbWarranty" id="cbWarranty" class="form-control select2">
+                                  <option value="none">none</option>
                                   <option value="1 year">1 year</option>
                                   <option value="2 years">2 years</option>
                                   <option value="3 years">3 years</option>
@@ -418,8 +418,8 @@ Yaksa Harmoni Global | Data Client/Customer
                       <div class="form-group row">
                           <div class="col-12">
                               <label>Operational Hours</label>
-                                <select required name="cb_operational_hours" id="cbOperationalHours" class="form-control select2">
-                                    <option selected value="none">none</option>
+                                <select required name="cbOperationalHours" id="cbOperationalHours" class="form-control select2">
+                                    <option value="none">none</option>
                                     <option value="1 year">24 hours</option>
                                     <option value="6am-19pm all days">6am-19pm all days</option>
                                     <option value="6am-19pm monday-friday">6am-19pm monday-friday</option>

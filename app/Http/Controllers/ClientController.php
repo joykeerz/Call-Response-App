@@ -60,6 +60,7 @@ class ClientController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request);
         $client = Client::find($id);
         $client->product_detail_id = $request->cbProduct;
         $client->client_customer_name = $request->tbCustomerName;
@@ -75,7 +76,7 @@ class ClientController extends Controller
         $client->client_warranty_year = $request->cbWarranty;
         $client->client_operation_hours = $request->cbOperationalHours;
         $client->save();
-        return redirect()->route('cl.index')->with('message', 'data successfuly added');
+        return redirect()->route('cl.index')->with('message', 'data successfuly updated');
     }
 
     public function delete($id)

@@ -11,6 +11,17 @@
   <link rel="stylesheet" href="{{asset('template/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('template/dist/css/adminlte.min.css')}}">
+  <style>
+  body {
+    /* zoom: 90%; */
+    /* -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1); */
+    /* width: 100%;
+    transform: scale(2)
+    transform-origin: 0 0; */
+  }
+  </style>
   @yield('css')
 </head>
 <body class="hold-transition sidebar-mini">
