@@ -420,7 +420,7 @@ Yaksa Harmoni Global | Data Client/Customer
                               <label>Operational Hours</label>
                                 <select required name="cbOperationalHours" id="cbOperationalHours" class="form-control select2">
                                     <option value="none">none</option>
-                                    <option value="1 year">24 hours</option>
+                                    <option value="24 hours">24 hours</option>
                                     <option value="6am-19pm all days">6am-19pm all days</option>
                                     <option value="6am-19pm monday-friday">6am-19pm monday-friday</option>
                                     <option value="8am-21pm all days">8am-21pm all days</option>
