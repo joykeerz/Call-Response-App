@@ -1,3 +1,6 @@
+## Call Response App made for a certain company.
+<p> i decided to push it on here and made a diffrent version for public. still a few bugs here and there but already usable.</p>
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
