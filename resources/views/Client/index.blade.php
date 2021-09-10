@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 @section('title')
-Yaksa Harmoni Global | Data Client/Customer
+Yaksa Harmoni Global | Data Client Customer
 @endsection
 @section('header')
 <div class="container-fluid">
