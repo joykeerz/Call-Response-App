@@ -120,12 +120,16 @@ Yaksa Harmoni Global | Data Client/Customer
                             <label>Product Detail</label>
                             <select required name="cb_product" id="cb_product" class="form-control select2">
                                 @forelse ($products as $product)
-                                    <option value="{{$product->id}}">SN: {{$product->serial_number}} | {{$product->product_name}} | {{$product->brand_name}} | {{$product->type_series}}</option>
+                                    <option value="{{$product->id}}">SN: {{$product->serial_number}}</option>
                                 @empty
                                     <option>No Data</option>
                                 @endforelse
                             </select>
                             <small id="helpId" class="text-muted">type serial number to search product detail</small><br>
+                            <dl class="row mt-3" id="listProductInfo">
+
+                            </dl>
+
                         </div>
                     </div>
                 </div>
@@ -475,6 +479,8 @@ Yaksa Harmoni Global | Data Client/Customer
     });
 
     $('.jq-warranty').hide();
+
+
   });
 </script>
 <script>
@@ -562,6 +568,30 @@ Yaksa Harmoni Global | Data Client/Customer
             }
         });
     }
+
+    $('#cb_product').change(function (e) {
+        e.preventDefault();
+        let product_id = $(this).val()
+        const url = '/product/edit/'+product_id;
+        $.ajax({
+            type: "get",
+            url: url,
+            success: function (response) {
+                console.log(response);
+                $('#listProductInfo').html(`
+                    <dd class="col-12">Product Info</dt>
+                    <dt class="col-md-2 col-sm-4">Prod. Name :</dt>
+                    <dd class="col-md-10 col-sm-8">${response.product_name}</dd>
+                    <dt class="col-md-2 col-sm-4">Prod. Brand :</dt>
+                    <dd class="col-md-10 col-sm-8">${response.brand_name}</dd>
+                    <dt class="col-md-2 col-sm-4">Type Series :</dt>
+                    <dd class="col-md-10 col-sm-8">${response.type_series}</dd>
+                    <dt class="col-md-2 col-sm-4">Entry Date :</dt>
+                    <dd class="col-md-10 col-sm-8">${response.date_of_entry}</dd>
+                `)
+            }
+        });
+    });
 
 getClientToLink();
 </script>
