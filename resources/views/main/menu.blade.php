@@ -27,8 +27,17 @@
     <link rel="stylesheet" href="{{ asset('template/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <style>
         .svg-pattern-1 {
-            background-color: #5b5c5d28;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.12'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-color: #DEDEDE;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cpattern id='p' width='100' height='100' patternUnits='userSpaceOnUse' patternTransform='scale(0.27)'%3E%3Ccircle data-color='outline' fill='none' stroke='%23343434' stroke-width='3.26' cx='50' cy='50' r='.5'%3E%3C/circle%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23p)' width='100%25' height='100%25'%3E%3C/rect%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            /* background-color: #DEDEDE;
+                                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cpattern id='p' width='100' height='100' patternUnits='userSpaceOnUse' patternTransform='scale(0.53)'%3E%3Ccircle data-color='outline' fill='none' stroke='%23343434' stroke-width='2.18' cx='50' cy='50' r='.5'%3E%3C/circle%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23p)' width='100%25' height='100%25'%3E%3C/rect%3E%3C/svg%3E");
+                                    background-size: cover;
+                                    background-position: center;
+                                    background-repeat: no-repeat; */
         }
 
         .svg-pattern-2 {
@@ -50,8 +59,8 @@
             </div>
         </div>
     </div>
-    <div class="card svg-pattern-1 ">
-        <div class="card-header">
+    <div class="card ">
+        <div style="background-color: #DEDEDE;" class="card-header">
             <h1 class="card-title">Main Menu</h1>
 
             <div class="card-tools">
@@ -60,7 +69,7 @@
                 </button>
             </div>
         </div>
-        <div class="card-body shadow-lg ">
+        <div class="card-body shadow-lg svg-pattern-1 ">
             <div class="row">
                 <div class="col-md-12">
 
