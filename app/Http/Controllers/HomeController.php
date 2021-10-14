@@ -45,4 +45,9 @@ class HomeController extends Controller
             'respondedTicket' => $respondedTicket
         ]);
     }
+
+    public function mainMenu()
+    {
+        return view('main.menu');
+    }
 }

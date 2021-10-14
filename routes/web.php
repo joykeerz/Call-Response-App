@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index')->name('landing');
+Route::get('/', 'HomeController@mainMenu')->name('landing');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@mainMenu')->name('home');
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('profile')->group(function () {
@@ -38,6 +38,7 @@ Route::middleware(['auth', 'UserAdmin'])->group(function () {
 
     ///jobcard route
     Route::prefix('jobcard')->group(function () {
+        Route::get('/', 'HomeController@index')->name('jobcard.index');
         Route::get('/step-1', 'JobcardController@stepOne')->name('jobcard.stepOneGet');
         Route::post('/step-1-store', 'JobcardController@stepOneStore')->name('jobcard.stepOneStore');
 
