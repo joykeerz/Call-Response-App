@@ -111,4 +111,25 @@ Route::middleware(['auth', 'UserAdmin'])->group(function () {
         Route::post('/update/{id}', 'CustomerServiceEngineerController@update')->name('cse.update');
         Route::get('/delete/{id}', 'CustomerServiceEngineerController@delete')->name('cse.delete');
     });
+
+    Route::prefix('reports')->group(function () {
+        Route::get('/', 'ReportController@index')->name('report.index');
+        Route::get('/bp', 'ReportController@bpReport')->name('report.bp');
+        Route::post('/bp/filter', 'ReportController@bpReportFilter')->name('report.bpFilter');
+
+        Route::get('/sp', 'ReportController@spReport')->name('report.sp');
+        Route::post('/sp/filter', 'ReportController@spReportFilter')->name('report.spFilter');
+
+        Route::get('/pd', 'ReportController@pdReport')->name('report.pd');
+        Route::post('/pd/filter', 'ReportController@pdReportFilter')->name('report.pdFilter');
+
+        Route::get('/sps', 'ReportController@spsReport')->name('report.sps');
+        Route::post('/sps/filter', 'ReportController@spsReportFilter')->name('report.spsFilter');
+
+        Route::get('/client', 'ReportController@clientReport')->name('report.client');
+        Route::post('/client/filter', 'ReportController@clientReportFilter')->name('report.clientFilter');
+
+        Route::get('/cse', 'ReportController@cseReport')->name('report.cse');
+        Route::post('/cse/filter', 'ReportController@cseReportFilter')->name('report.cseFilter');
+    });
 });

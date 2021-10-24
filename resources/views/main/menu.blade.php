@@ -34,10 +34,10 @@
             background-repeat: no-repeat;
 
             /* background-color: #DEDEDE;
-                                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cpattern id='p' width='100' height='100' patternUnits='userSpaceOnUse' patternTransform='scale(0.53)'%3E%3Ccircle data-color='outline' fill='none' stroke='%23343434' stroke-width='2.18' cx='50' cy='50' r='.5'%3E%3C/circle%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23p)' width='100%25' height='100%25'%3E%3C/rect%3E%3C/svg%3E");
-                                    background-size: cover;
-                                    background-position: center;
-                                    background-repeat: no-repeat; */
+                                                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cpattern id='p' width='100' height='100' patternUnits='userSpaceOnUse' patternTransform='scale(0.53)'%3E%3Ccircle data-color='outline' fill='none' stroke='%23343434' stroke-width='2.18' cx='50' cy='50' r='.5'%3E%3C/circle%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23p)' width='100%25' height='100%25'%3E%3C/rect%3E%3C/svg%3E");
+                                                    background-size: cover;
+                                                    background-position: center;
+                                                    background-repeat: no-repeat; */
         }
 
         .svg-pattern-2 {
@@ -168,46 +168,58 @@
                     <hr>
                 </div>
             </div>
-
-        </div>
-        <!-- /.card-body -->
-        {{-- <div class="card-footer">
+            <h3>Reporting</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img class="card-img-top"
+                            src="{{ asset('backgrounds/bernd-klutsch-nE2HV5AUXFo-unsplash.jpg') }}" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">Reporting</h4>
+                            <p class="card-text text-muted">Create reports from data</p>
+                            <a href="{{ route('report.index') }}" class="btn btn-outline-primary shadow-sm">Open</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+            {{-- <div class="card-footer">
     </div> --}}
-        <!-- /.card-footer-->
-    </div>
-@endsection
+            <!-- /.card-footer-->
+        </div>
+    @endsection
 
-@section('js')
-    <!-- DataTables  & Plugins -->
-    <script src="{{ asset('template/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('template/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('template/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('template/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('template/plugins/jszip/jszip.min.js') }}"></script>
-    <script src="{{ asset('template/plugins/pdfmake/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('template/plugins/pdfmake/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-    <!-- Page specific script -->
-    <script>
-        $(function() {
-            $("#example1").DataTable({
-                "responsive": true,
-                "lengthChange": false,
-                "autoWidth": false,
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
+    @section('js')
+        <!-- DataTables  & Plugins -->
+        <script src="{{ asset('template/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+        <script src="{{ asset('template/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+        <script src="{{ asset('template/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+        <script src="{{ asset('template/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+        <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+        <script src="{{ asset('template/plugins/jszip/jszip.min.js') }}"></script>
+        <script src="{{ asset('template/plugins/pdfmake/pdfmake.min.js') }}"></script>
+        <script src="{{ asset('template/plugins/pdfmake/vfs_fonts.js') }}"></script>
+        <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+        <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+        <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+        <!-- Page specific script -->
+        <script>
+            $(function() {
+                $("#example1").DataTable({
+                    "responsive": true,
+                    "lengthChange": false,
+                    "autoWidth": false,
+                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+                $('#example2').DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": false,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                    "responsive": true,
+                });
             });
-        });
-    </script>
-@endsection
+        </script>
+    @endsection

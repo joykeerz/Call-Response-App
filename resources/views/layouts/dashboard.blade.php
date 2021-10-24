@@ -169,6 +169,15 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('report.index') }}" class="nav-link">
+                                {{-- <i class="nav-icon fas fa-home"></i> --}}
+                                <i class="nav-icon fas fa-print"></i>
+                                <p>
+                                    Reporting
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
