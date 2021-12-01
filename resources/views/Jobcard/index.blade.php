@@ -1,95 +1,96 @@
 @extends('layouts.dashboard')
 
 @section('css')
-<!-- DataTables -->
-<link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ asset('template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ asset('template/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-<!-- Select2 -->
-<link rel="stylesheet" href="{{ asset('template/plugins/select2/css/select2.min.css')}}">
-<link rel="stylesheet" href="{{ asset('template/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('template/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
 @endsection
 
 @section('title')
-Yaksa Harmoni Global | New Jobcard
+    Yaksa Harmoni Global | New Jobcard
 @endsection
 
 @section('header')
-<div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-sm-6">
-        <h1>Create New Jobcard</h1>
-      </div>
-      <div class="col-sm-6">
-        <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-          <li class="breadcrumb-item active">Jobcard</li>
-        </ol>
-      </div>
-    </div>
-</div><!-- /.container-fluid -->
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Create New Jobcard</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                    <li class="breadcrumb-item active">Jobcard</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
 @endsection
 
 @section('content')
-<form action="{{route('jobcard.stepOneStore')}}" method="post">
-    @csrf
-<div class="row">
-        <div class="col-12 col-md-6 col-sm-6">
-            <div class="card">
-                <div class="card-header">
-                    <h4>
-                      Call Ticket Form
-                    </h4>
-                    <p class="card-text text-muted">Complete the form below</p>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label>Customer</label>
-                        <select class="form-control select2" style="width: 100%;" name="tb_customer" id="tb_customer">
-                            @forelse ($customerData as $cd)
-                            <option value="{{$cd->id}}">{{$cd->client_customer_name}}</option>
-                            @empty
-                                <option>No Data</option>
-                            @endforelse
-                        </select>
-                        <small class="form-text text-muted">type customer name to search</small>
-                        <div class="card">
-                            <div class="card-body">
-                                <h6 class="form-text text-muted">Machine ID : <b id="lblMachineId"></b></h6>
-                                <br>
-                                <small class="text-muted form-text">
-                                    select customer to show information.
-                                </small>
-                            </div>
-                          </div>
+    <form action="{{ route('jobcard.stepOneStore') }}" method="post">
+        @csrf
+        <div class="row">
+            <div class="col-12 col-md-6 col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>
+                            Call Ticket Form
+                        </h4>
+                        <p class="card-text text-muted">Complete the form below</p>
                     </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-6">
-                                <label>Bussiness Partner</label>
-                                <select class="form-control w-50 select2" style="width: 100%;" name="cb_bp" id="cb_bp">
-                                    @forelse ($bpData as $bpData)
-                                    <option value="{{$bpData->id}}">{{$bpData->bp_company_name}}</option>
-                                    @empty
-                                        <option>No Data</option>
-                                    @endforelse
-                                </select>
-                                <small class="form-text text-muted">you can leave this empty</small>
-                            </div>
-                            <div class="col-6">
-                                <label>Service Partner</label>
-                                <select class="form-control w-50 select2" style="width: 100%;" name="cb_sp" id="cb_sp">
-                                    @forelse ($spData as $spData)
-                                    <option value="{{$spData->id}}">{{$spData->sp_company_name}}</option>
-                                    @empty
-                                        <option>No Data</option>
-                                    @endforelse
-                                </select>
-                                <small class="form-text text-muted">you can leave this empty</small>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Customer</label>
+                            <select class="form-control select2" style="width: 100%;" name="tb_customer" id="tb_customer">
+                                @forelse ($customerData as $cd)
+                                    <option value="{{ $cd->id }}">{{ $cd->client_customer_name }} |
+                                        {{ $cd->client_machine_id }}</option>
+                                @empty
+                                    <option>No Data</option>
+                                @endforelse
+                            </select>
+                            <small class="form-text text-muted">type customer name to search</small>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="form-text text-muted">Machine ID : <b id="lblMachineId"></b></h6>
+                                    <br>
+                                    <small class="text-muted form-text">
+                                        select customer to show information.
+                                    </small>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    {{-- <div class="form-group">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>Bussiness Partner</label>
+                                    <select class="form-control w-50 select2" style="width: 100%;" name="cb_bp" id="cb_bp">
+                                        @forelse ($bpData as $bpData)
+                                            <option value="{{ $bpData->id }}">{{ $bpData->bp_company_name }}</option>
+                                        @empty
+                                            <option>No Data</option>
+                                        @endforelse
+                                    </select>
+                                    <small class="form-text text-muted">you can leave this empty</small>
+                                </div>
+                                <div class="col-6">
+                                    <label>Service Partner</label>
+                                    <select class="form-control w-50 select2" style="width: 100%;" name="cb_sp" id="cb_sp">
+                                        @forelse ($spData as $spData)
+                                            <option value="{{ $spData->id }}">{{ $spData->sp_company_name }}</option>
+                                        @empty
+                                            <option>No Data</option>
+                                        @endforelse
+                                    </select>
+                                    <small class="form-text text-muted">you can leave this empty</small>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- <div class="form-group">
                         <label for="tb_customer">Customer</label>
                         <input type="text" class="form-control" name="tb_customer" id="tb_customer">
                         <small id="tb_customer_help" class="form-text text-muted">Insert customer name to show info</small>
@@ -114,25 +115,27 @@ Yaksa Harmoni Global | New Jobcard
 
                           </table>
                     </div> --}}
-                    {{-- <div class="form-group">
+                        {{-- <div class="form-group">
                         <label for="tb_pic">PIC Contact</label>
                         <input type="text" class="form-control" id="tb_pic" name="tb_pic">
                         <small id="tb_pic_help" class="form-text text-muted">Insert phone or email</small>
                     </div> --}}
-                    <div class="form-group">
-                        <label for="tb_problem_desc">Problem Desc.</label>
-                        <textarea name="tb_problem_desc" id="tb_problem_desc" class="form-control" rows="4"></textarea>
+                        <div class="form-group">
+                            <label for="tb_problem_desc">Problem Desc.</label>
+                            <textarea name="tb_problem_desc" id="tb_problem_desc" class="form-control"
+                                rows="4"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="tb_date_time">Date & Time</label>
+                            <input class="form-control" type="datetime-local" name="tb_date_time" id="tb_date_time">
+                        </div>
+                        <a name="" id="" class="btn btn-outline-danger" href="{{ route('home') }}"
+                            role="button">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Next</button>
                     </div>
-                    <div class="form-group">
-                        <label for="tb_date_time">Date & Time</label>
-                        <input class="form-control" type="datetime-local" name="tb_date_time" id="tb_date_time">
-                    </div>
-                    <a name="" id="" class="btn btn-outline-danger" href="{{ route('home') }}" role="button">Cancel</a>
-                    <button type="submit" class="btn btn-primary">Next</button>
                 </div>
             </div>
-        </div>
-        {{-- <div class="col-12 col-md-6 col-sm-6">
+            {{-- <div class="col-12 col-md-6 col-sm-6">
             <div class="card">
                 <div class="card-header">
                     <h4>
@@ -151,9 +154,8 @@ Yaksa Harmoni Global | New Jobcard
                             @endforelse
                         </select>
                         <small class="form-text text-muted">type machine id to search machine</small>
-                    </div>
-            --}}
-                    {{-- <div class="form-group">
+                    </div> --}}
+            {{-- <div class="form-group">
                         <label for="myInput">Machine ID</label>
                         <input type="text" class="form-control" id="myInput" name="tb_id_number">
                         <small class="form-text text-muted">type machine id to show machine info</small>
@@ -185,83 +187,82 @@ Yaksa Harmoni Global | New Jobcard
                               </table>
                         </div>
                     </div> --}}
-                    {{--
-                </div>
+            {{-- </div>
             </div>
-        </div>--}}
-    </div>
-</form>
+        </div> --}}
+        </div>
+    </form>
 @endsection
 
 @section('js')
-<!-- DataTables  & Plugins -->
-<script src="{{ asset('template/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('template/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('template/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('template/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-<script src="{{ asset('template/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('template/plugins/jszip/jszip.min.js') }}"></script>
-<script src="{{ asset('template/plugins/pdfmake/pdfmake.min.js') }}"></script>
-<script src="{{ asset('template/plugins/pdfmake/vfs_fonts.js') }}"></script>
-<script src="{{ asset('template/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-<script src="{{ asset('template/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
-<script src="{{ asset('template/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-<!-- Select2 -->
-<script src="{{ asset('template/plugins/select2/js/select2.full.min.js')}}"></script>
-<!-- Page specific script -->
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2({
-        theme: 'bootstrap4'
-    })
+    <!-- DataTables  & Plugins -->
+    <script src="{{ asset('template/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('template/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('template/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('template/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('template/plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ asset('template/plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('template/plugins/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset('template/plugins/select2/js/select2.full.min.js') }}"></script>
+    <!-- Page specific script -->
+    <script>
+        $(function() {
+            //Initialize Select2 Elements
+            $('.select2').select2({
+                theme: 'bootstrap4'
+            })
 
-    //Initialize datatable 1
-    var table = $("#example1").DataTable({
-      "responsive": true,
-      "lengthChange": false,
-      "autoWidth": false,
-      "paging":   false,
-      "info":     false,
-      sDom: 'lrtip'
-    });
+            //Initialize datatable 1
+            var table = $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "paging": false,
+                "info": false,
+                sDom: 'lrtip'
+            });
 
-    //Initialize datatable 2
-    var table2 = $("#example2").DataTable({
-      "responsive": true,
-      "lengthChange": false,
-      "autoWidth": false,
-      "paging":   false,
-      "info":     false,
-      sDom: 'lrtip'
-    });
+            //Initialize datatable 2
+            var table2 = $("#example2").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "paging": false,
+                "info": false,
+                sDom: 'lrtip'
+            });
 
-    //fungsi search datatable dari textbox
-    $('#myInput').on( 'keyup', function () {
-        table.search( this.value ).draw();
-    });
+            //fungsi search datatable dari textbox
+            $('#myInput').on('keyup', function() {
+                table.search(this.value).draw();
+            });
 
-    //fungsi search datatable dari textbox
-    $('#tb_customer').on( 'keyup', function () {
-        table2.search( this.value ).draw();
-    });
+            //fungsi search datatable dari textbox
+            $('#tb_customer').on('keyup', function() {
+                table2.search(this.value).draw();
+            });
 
-    ///fungsi get data client saat select berubah
-    $('#tb_customer').change(function (e) {
-        e.preventDefault();
-        console.log($(this).val());
-        var id = $(this).val();
-        var url = '/jobcard/getClientDataAjax/'+id;
-        $.ajax({
-            url: url,
-            method: "get",
-            success: function (response) {
-                console.table(response);
-                $('#lblMachineId').text(response.client_machine_id);
-            }
+            ///fungsi get data client saat select berubah
+            $('#tb_customer').change(function(e) {
+                e.preventDefault();
+                console.log($(this).val());
+                var id = $(this).val();
+                var url = '/jobcard/getClientDataAjax/' + id;
+                $.ajax({
+                    url: url,
+                    method: "get",
+                    success: function(response) {
+                        console.table(response);
+                        $('#lblMachineId').text(response.client_machine_id);
+                    }
+                });
+            });
         });
-    });
-});
-</script>
+    </script>
 @endsection
