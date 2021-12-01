@@ -65,10 +65,10 @@ class DatabaseSeeder extends Seeder
             'part_serial' => 'dummy serial number',
             'part_name' => 'dummy part name',
             'part_condition' => 'new',
+            'part_module' => 'module 1',
             'part_qty' => 1,
             'product_detail_id' => 1,
             'part_date_of_entry' => now(),
-            'part_out_date' => now(),
         ]);
         DB::table('clients')->insert([
             'product_detail_id' => 1,

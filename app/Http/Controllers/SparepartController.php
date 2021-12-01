@@ -35,6 +35,7 @@ class SparepartController extends Controller
         $spareparts->part_name = $request->tb_part_name;
         $spareparts->part_qty = $request->tb_part_qty;
         $spareparts->part_condition = $request->cb_condition;
+        $spareparts->part_module = $request->tb_part_module;
         $spareparts->part_date_of_entry = $request->tb_date_entry;
         // $spareparts->part_out_date = $request->tb_date_out;
         $spareparts->save();
@@ -60,6 +61,7 @@ class SparepartController extends Controller
         $spareparts->part_name = $request->tbPartName;
         $spareparts->part_condition = $request->cbCondition;
         $spareparts->part_qty = $request->tbPartQty;
+        $spareparts->part_module = $request->tbPartModule;
         $spareparts->product_detail_id = $request->cbProduct;
         $spareparts->part_date_of_entry = $request->tbDateEntry;
         // $spareparts->part_out_date = $request->tbDateOut;

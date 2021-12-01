@@ -123,4 +123,29 @@ class ReportController extends Controller
         $sp = Sp::all();
         return view('reports.cseReport', ['cse' => $cse, 'sps' => $sp]);
     }
+
+    public function jobcardReport()
+    {
+        $jobcards = DB::table('jobcards')
+            ->join('clients', 'jobcards.client_id', '=', 'clients.id')
+            ->join('bps', 'jobcards.bp_id', '=', 'bps.id')
+            ->join('sps', 'jobcards.sp_id', '=', 'sps.id')
+            ->join('product_details', 'clients.product_detail_id', '=', 'product_details.id')
+            ->select('clients.*', 'bps.*', 'sps.*',  'product_details.*', 'jobcards.*')
+            ->get();
+        return view('reports.jobcardReport', ['jobcards' => $jobcards]);
+    }
+
+    public function jobcardReportFilter(Request $request)
+    {
+        $jobcards = DB::table('jobcards')
+            ->join('clients', 'jobcards.client_id', '=', 'clients.id')
+            ->join('bps', 'jobcards.bp_id', '=', 'bps.id')
+            ->join('sps', 'jobcards.sp_id', '=', 'sps.id')
+            ->join('product_details', 'clients.product_detail_id', '=', 'product_details.id')
+            ->select('clients.*', 'bps.*', 'sps.*',  'product_details.*', 'jobcards.*')
+            ->whereBetween('jobcards.date_time', [$request->min, $request->max])
+            ->get();
+        return view('reports.jobcardReport', ['jobcards' => $jobcards]);
+    }
 }

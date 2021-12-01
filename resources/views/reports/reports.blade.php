@@ -127,6 +127,19 @@
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="small-box bg-info">
+                                <div class="inner">
+                                    <h2>Jobcard</h2>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-book"></i>
+
+                                </div>
+                                <a href="{{ route('report.jobcard') }}" class="small-box-footer">Create Report <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
                     </div>
 
                 </div>

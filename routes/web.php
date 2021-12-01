@@ -131,5 +131,8 @@ Route::middleware(['auth', 'UserAdmin'])->group(function () {
 
         Route::get('/cse', 'ReportController@cseReport')->name('report.cse');
         Route::post('/cse/filter', 'ReportController@cseReportFilter')->name('report.cseFilter');
+
+        Route::get('/jobcard', 'ReportController@jobcardReport')->name('report.jobcard');
+        Route::post('/jobcard/filter', 'ReportController@jobcardReportFilter')->name('report.jobcardFilter');
     });
 });

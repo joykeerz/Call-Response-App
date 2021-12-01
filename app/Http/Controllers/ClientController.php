@@ -30,7 +30,8 @@ class ClientController extends Controller
 
     public function store(Request $request)
     {
-        $client = Client::firstOrNew(['client_customer_name' => $request->tb_customer_name]);
+        // $client = Client::firstOrNew(['client_customer_name' => $request->tb_customer_name]);
+        $client = new Client();
         $client->product_detail_id = $request->cb_product;
         $client->client_customer_name = $request->tb_customer_name;
         $client->client_machine_id = $request->tb_machine_id;
