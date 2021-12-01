@@ -19,7 +19,7 @@ class SparepartController extends Controller
     {
         // $spareparts = Sparepart::all();
         $products = DB::table('product_details')
-            ->select(['product_name', 'brand_name', 'type_series'])
+            ->select()
             ->groupBy('product_name')
             ->get();
         // $products = ProductDetail::all();
