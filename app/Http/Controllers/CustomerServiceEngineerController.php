@@ -31,12 +31,7 @@ class CustomerServiceEngineerController extends Controller
         $cse->initial_cse = $request->tb_cse_initial;
         $cse->area_cse = $request->tb_cse_area;
         $cse->hp_cse = $request->tb_cse_hp;
-
-        if ($request->tb_cse_leader) {
-            $cse->leader_cse = $request->tb_cse_leader;
-        } else {
-            $cse->leader_cse = "none";
-        }
+        $cse->leader_cse = $request->tb_cse_leader;
         $cse->sp_id = $request->cb_sp;
         $cse->save();
         return redirect()->route('cse.index')->with('message', 'Data successfuly created');

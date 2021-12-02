@@ -74,7 +74,7 @@
                         </div>
                         <div class="form-group">
                             <label>CSE Leader</label>
-                            <input required type="text" name="tb_cse_leader" class="form-control">
+                            <input type="text" name="tb_cse_leader" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Service Partner</label>
