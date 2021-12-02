@@ -102,7 +102,7 @@
                                     <option value="Maintenance Only">Maintenance Only</option>
                                     <option value="Part Only">Part Only</option>
                                     <option value="OnCall">OnCall</option>
-                                    <option value="Warranty">Warranty</option>
+                                    {{-- <option value="Warranty">Warranty</option> --}}
                                 </select>
                             </div>
                         </div>
@@ -360,7 +360,7 @@
                                         <option value="Maintenance Only">Maintenance Only</option>
                                         <option value="Part Only">Part Only</option>
                                         <option value="OnCall">OnCall</option>
-                                        <option value="Warranty">Warranty</option>
+                                        {{-- <option value="Warranty">Warranty</option> --}}
                                     </select>
                                 </div>
                             </div>
@@ -497,7 +497,7 @@
                 "responsive": true,
             });
 
-            $('.jq-warranty').hide();
+            // $('.jq-warranty').hide();
 
 
         });
@@ -507,14 +507,14 @@
             theme: 'bootstrap4'
         })
 
-        $('#cb_machine_status').change(function(e) {
-            e.preventDefault();
-            if ($(this).val() == 'Warranty') {
-                $('.jq-warranty').show();
-            } else {
-                $('.jq-warranty').hide();
-            }
-        });
+        // $('#cb_machine_status').change(function(e) {
+        //     e.preventDefault();
+        //     if ($(this).val() == 'Warranty') {
+        //         $('.jq-warranty').show();
+        //     } else {
+        //         $('.jq-warranty').hide();
+        //     }
+        // });
 
         function edit(id) {
             var url = '/client/edit/' + id;
