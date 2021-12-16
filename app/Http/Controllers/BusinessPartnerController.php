@@ -77,6 +77,7 @@ class BusinessPartnerController extends Controller
 
     public function delete($id)
     {
+
         $bps = Bp::find($id);
         $bps->delete();
         return redirect()->route('bp.index')->with('message', 'data successfuly deleted');
