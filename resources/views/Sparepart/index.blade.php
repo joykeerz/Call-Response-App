@@ -152,11 +152,13 @@
                             <td>{{ $sparepart->part_date_of_entry }}</td>
                             {{-- <td>{{$sparepart->part_out_date}}</td> --}}
                             <td>
-                                <button onclick="edit('{{ $sparepart->spid }}')"
-                                    class="btn btn-success float-right mr-2"><i class="fa fa-pencil-alt"></i></button>
-                                <a onclick="return confirm('are you sure?')" class="btn btn-danger float-right mr-2"
-                                    href="{{ route('spp.delete', ['id' => $sparepart->spid]) }}"><i
-                                        class="fa fa-trash" aria-hidden="true"></i></a>
+                                <div class="d-flex">
+                                    <button onclick="edit('{{ $sparepart->spid }}')"
+                                        class="btn btn-success float-right mr-2"><i class="fa fa-pencil-alt"></i></button>
+                                    <a onclick="return confirm('are you sure?')" class="btn btn-danger float-right mr-2"
+                                        href="{{ route('spp.delete', ['id' => $sparepart->spid]) }}"><i
+                                            class="fa fa-trash" aria-hidden="true"></i></a>
+                                </div>
                             </td>
                         </tr>
                     @empty
